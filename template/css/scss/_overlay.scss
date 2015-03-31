@@ -1,22 +1,6 @@
 /* overlay button */
 $max-width: em(940) !global;
 
-.trigger-wrapper {
-	position:fixed;
-	width:100%;
-	padding: 25px 0 30px;
-	top:0;
-	z-index: 13;
-	@include transition(all 0.5s ease);
-	.container {
-		@include outer-container;
-		padding:0 22px
-	}
-	&.scrolled {
-		padding: 12px 0 15px;
-	}
-}
-
 #trigger-overlay {
 	float:right;
 	top: 0;
@@ -55,27 +39,28 @@ $max-width: em(940) !global;
 #trigger-overlay i:after{
   margin-top: 7px;
 }
-#trigger-overlay.clicked i {
-	background: none !important;
-}
-#trigger-overlay.clicked i:before{
-	background:#fff!important;
-	@include transform(rotate(-45deg));
-	margin-top: 0px;
-}
-#trigger-overlay.clicked i:after{
-	background:#fff!important;
-	@include transform(rotate(45deg));
-	margin-top: 0px;
-}
+
+// #trigger-overlay.clicked i {
+// 	background: none !important;
+// }
+// #trigger-overlay.clicked i:before{
+// 	background:#fff!important;
+// 	@include transform(rotate(-45deg));
+// 	margin-top: 0px;
+// }
+// #trigger-overlay.clicked i:after{
+// 	background:#fff!important;
+// 	@include transform(rotate(45deg));
+// 	margin-top: 0px;
+// }
+// #trigger-overlay.white.clicked i{
+// 	background: none !important;
+// }
 
 #trigger-overlay.white i,
 #trigger-overlay.white i:before,
 #trigger-overlay.white i:after{
 	background:#fff!important
-}
-#trigger-overlay.white.clicked i{
-	background: none !important;
 }
 
 /* OVERLAY NAV */

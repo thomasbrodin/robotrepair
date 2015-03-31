@@ -13,7 +13,7 @@
 
 	function toggleOverlay() {
 		if( classie.has( overlay, 'open' ) ) {
-			classie.remove(triggerBttn, 'clicked' );
+			// classie.remove(triggerBttn, 'clicked' );
 			classie.remove( overlay, 'open' );
 			classie.add( overlay, 'close' );
 			var onEndTransitionFn = function( ev ) {
@@ -32,9 +32,10 @@
 		}
 		else if( !classie.has( overlay, 'close' ) ) {
 			classie.add( overlay, 'open' );
-			classie.add( triggerBttn, 'clicked' );
+			// classie.add( triggerBttn, 'clicked' );
 		}
 	}
 
 	triggerBttn.addEventListener( 'click', toggleOverlay );
+	overlay.addEventListener( 'click', toggleOverlay );
 })();

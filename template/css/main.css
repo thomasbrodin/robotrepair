@@ -569,27 +569,6 @@ table {
   border-spacing: 0; }
 
 /* overlay button */
-.trigger-wrapper {
-  position: fixed;
-  width: 100%;
-  padding: 25px 0 30px;
-  top: 0;
-  z-index: 13;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
-  .trigger-wrapper .container {
-    max-width: 58.75em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 22px; }
-    .trigger-wrapper .container::after {
-      clear: both;
-      content: "";
-      display: table; }
-  .trigger-wrapper.scrolled {
-    padding: 12px 0 15px; }
-
 #trigger-overlay {
   float: right;
   top: 0;
@@ -631,34 +610,10 @@ table {
 #trigger-overlay i:after {
   margin-top: 7px; }
 
-#trigger-overlay.clicked i {
-  background: none !important; }
-
-#trigger-overlay.clicked i:before {
-  background: #fff !important;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  margin-top: 0px; }
-
-#trigger-overlay.clicked i:after {
-  background: #fff !important;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  margin-top: 0px; }
-
 #trigger-overlay.white i,
 #trigger-overlay.white i:before,
 #trigger-overlay.white i:after {
   background: #fff !important; }
-
-#trigger-overlay.white.clicked i {
-  background: none !important; }
 
 /* OVERLAY NAV */
 .nav > li.active > a {
@@ -1690,35 +1645,59 @@ header {
   position: fixed;
   width: 100%;
   top: 0;
-  padding: 24px 0 30px;
+  padding: 24px 0 0;
   z-index: 12;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease; }
-  header .container {
+  header .topnav {
     max-width: 58.75em;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 22px; }
-    header .container::after {
+    padding: 0 22px 30px; }
+    header .topnav::after {
       clear: both;
       content: "";
       display: table; }
-    header .container h1 {
+    header .topnav h1 {
       float: left;
       font-size: 1.625em; }
-      header .container h1 span {
+      header .topnav h1 span {
         color: #008cb4;
         padding-left: 0.5em; }
-    header .container .menu {
+    header .topnav .menu {
       float: right; }
   header.scrolled {
     background-color: #232323;
-    padding: 12px 0 15px; }
-    header.scrolled h1 {
+    padding: 12px 0 0; }
+    header.scrolled .topnav {
+      padding-bottom: 15px; }
+    header.scrolled h1 a {
       color: #fff !important; }
-      header.scrolled h1 span {
-        color: #ccc; }
+    header.scrolled h1 span {
+      color: #ccc; }
+  header .subnav {
+    width: 100%;
+    background: #ccc; }
+    header .subnav ul {
+      max-width: 58.75em;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      padding: 0 22px; }
+      header .subnav ul::after {
+        clear: both;
+        content: "";
+        display: table; }
+      header .subnav ul li {
+        display: inline-block;
+        list-style: none;
+        padding: 10px 0; }
+        header .subnav ul li a {
+          font-family: "brandon-grotesque", sans-serif;
+          text-transform: uppercase;
+          color: grey;
+          padding-right: 15px; }
 
 #brand-platform .inner {
   max-width: 58.75em;
@@ -1788,6 +1767,8 @@ header {
 
 section {
   padding-top: 80px; }
+  section#feed {
+    padding-top: 160px; }
   section.wrap {
     max-width: 58.75em;
     margin-left: auto;
@@ -1808,7 +1789,7 @@ section {
         display: table; }
       section.wrap .row .block {
         overflow: hidden;
-        background-color: grey;
+        background-color: #008cb4;
         position: relative;
         height: 100%;
         cursor: pointer;

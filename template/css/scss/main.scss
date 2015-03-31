@@ -23,12 +23,12 @@ header {
 	position:fixed;
 	width:100%;
 	top:0;
-	padding:24px 0 30px;
+	padding:24px 0 0;
 	z-index:12;
 	@include transition(all 0.5s ease);
-	.container {
+	.topnav {
 		@include outer-container;
-		padding:0 22px;
+		padding:0 22px 30px;
 		h1 {
 		    float: left;
 		    font-size: em(26);
@@ -43,13 +43,34 @@ header {
 	}
 	&.scrolled {
 		background-color:#232323;
-		padding: 12px 0 15px;
-		h1 {
-	    	color:#fff!important;
-		    span {
-		    	color:#ccc;
-		    }
+		padding: 12px 0 0;
+		.topnav {
+			padding-bottom:15px;
 		}
+		h1 {
+	    	a { color:#fff!important;}
+		    span {color:#ccc;}
+		}
+	}
+	.subnav{
+	  width: 100%;
+	  background: #ccc;
+	  ul {
+	  	@include outer-container;
+	  	display: block;
+	  	padding:0 22px;
+	  	li {
+	  		display: inline-block;
+	  		list-style: none;
+	  		padding:10px 0;
+	  		a {
+	  			font-family: $font-stack;
+	  			text-transform: uppercase;
+	  			color:grey;
+	  			padding-right:15px;
+	  		}
+	  	}
+	  }
 	}
 }
 
@@ -95,6 +116,9 @@ header {
 }
 section { 
 	padding-top:80px;
+	&#feed{
+		padding-top:160px
+	}
 	&.wrap {
 		@include outer-container;
 		height:100%;
@@ -105,7 +129,7 @@ section {
 			position:relative;
 		  	.block {
 		  		overflow: hidden;
-	    		background-color: grey;
+	    		background-color: $colored;
 	    		position:relative;
 	    		height: 100%;
 	    		cursor:pointer;
@@ -187,7 +211,6 @@ section {
 			}			
 		}
 	}
-
 }
 .track:hover .track-color{
 	@include transform(translatex(200%));
