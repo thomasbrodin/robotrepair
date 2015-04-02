@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<section id="collaborator" role="main" class="wrap">
+		 <div class="row">
+		 	{% for item in post.get_field('collaborator')  %}
+	            <article class="friend">
+	                <a href="#">
+	                    <figure>
+	                        <img src="{{TimberImage(item.collaborator_image).src|resize(420, 420, 'center')}}"/>
+	                        <div>
+	                            <figcaption>
+	                                <h4>{{ item.collaborator_name }}</h4>
+	                            </figcaption>
+	                        </div>
+	                    </figure>
+	                </a>
+	            </article>
+	        {% endfor %}
+        </div>
+	</section>
+{% endblock %}

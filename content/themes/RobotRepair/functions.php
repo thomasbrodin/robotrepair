@@ -6,6 +6,7 @@ if ( ! class_exists( 'Timber' ) ) {
 		} );
 	return;
 }
+define('THEME_URL', get_template_directory_uri());
 
 class StarterSite extends TimberSite {
 
@@ -15,27 +16,32 @@ class StarterSite extends TimberSite {
 		add_theme_support( 'menus' );
 		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
 		add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
-		add_action( 'init', array( $this, 'register_post_types' ) );
-		add_action( 'init', array( $this, 'register_taxonomies' ) );
+		add_action('wp_enqueue_scripts', array($this, 'load_scripts'));	
+		add_action('wp_enqueue_scripts', array($this, 'load_styles'));
+		add_action('init', array($this,  'removeHeadLinks'));
 		parent::__construct();
 	}
 
-	function register_post_types() {
-		//this is where you can register custom post types
-	}
-
-	function register_taxonomies() {
-		//this is where you can register custom taxonomies
-	}
-
 	function add_to_context( $context ) {
-		$context['foo'] = 'bar';
-		$context['stuff'] = 'I am a value set in your functions.php file';
-		$context['notes'] = 'These values are available everytime you call Timber::get_context();';
 		$context['menu'] = new TimberMenu();
 		$context['site'] = $this;
 		return $context;
 	}
+
+	function load_scripts(){
+		wp_enqueue_script('jquery');
+		wp_enqueue_script( 'modernizr', THEME_URL . '/js/vendor/modernizr-2.8.3.min.js', array('jquery'), false, false);
+		wp_enqueue_script( 'main-compressed', THEME_URL . '/js/main.min.js', array('jquery'), '', true);
+	}
+	function load_styles() {
+		wp_enqueue_style( 'robotrepair', THEME_URL . '/css/main.css'); 
+	}
+
+	function removeHeadLinks() {
+    	remove_action('wp_head', 'rsd_link');
+    	remove_action('wp_head', 'wlwmanifest_link');
+    	remove_action('wp_head', 'wp_generator');
+    }
 
 	function add_to_twig( $twig ) {
 		/* this is where you can add your own fuctions to twig */

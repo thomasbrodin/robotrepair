@@ -1,0 +1,73 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<section id="info" class="wrap">
+		<div class="row">
+	        <article class="page-content">
+	        	{{post.content}}
+	        </article>
+	    </div>
+	</section>
+
+     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+      <script type="text/javascript">
+            function initialize() {
+                var mapOptions = {
+                    center: new google.maps.LatLng(37.410878, -94.705819),
+                    zoom: 5,
+                    styles:[{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d3d3d3"}]},{"featureType":"transit","stylers":[{"color":"#808080"},{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#b3b3b3"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"weight":1.8}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#d7d7d7"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ebebeb"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#a7a7a7"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#efefef"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#696969"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#737373"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#d6d6d6"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dadada"}]}]
+                  };
+                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                var image = "{{theme.uri}}/img/marker.png";
+                
+                var contentStringNY = '<div id="content">'+
+                      '<div id="siteNotice">'+
+                      '</div>'+
+                      '<h3 class="HeadingMap">New York Office</h3>'+
+                      '<p><a href="https://goo.gl/maps/j0A97" target="_blank">'+
+                     'Get Directions</a> '+
+                      '</p>'+
+                      '</div>';
+
+                var infowindowNY = new google.maps.InfoWindow({
+                      content: contentStringNY
+                });
+                var rrLatlngNY = new google.maps.LatLng(40.721278, -73.948381);
+                var rrMarkerNY = new google.maps.Marker({
+                    position: rrLatlngNY,
+                    map: map,
+                    icon: image,
+                    title: 'New York'
+                  });
+                google.maps.event.addListener(rrMarkerNY, 'click', function() {
+                    infowindowNY.open(map,rrMarkerNY);
+                });
+
+                var contentStringLA = '<div id="content">'+
+                      '<div id="siteNotice">'+
+                      '</div>'+
+                      '<h3 class="HeadingMap">Los Angeles Office</h3>'+
+                      '<p><a href="https://goo.gl/maps/1ScWG" target="_blank">'+
+                      'Get Directions</a> '+
+                      '</p>'+
+                      '</div>';
+
+                var infowindowLA = new google.maps.InfoWindow({
+                      content: contentStringLA
+                });
+                var rrLatlngLA = new google.maps.LatLng(34.032901, -118.463679);
+                var rrMarkerLA = new google.maps.Marker({
+                    position: rrLatlngLA,
+                    map: map,
+                    icon: image,
+                    title: 'Los Angeles'
+                  });
+                google.maps.event.addListener(rrMarkerLA, 'click', function() {
+                    infowindowLA.open(map,rrMarkerLA);
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+  
+        <section id="map"></section>
+{% endblock %}
