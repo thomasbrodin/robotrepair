@@ -8,7 +8,7 @@ function initialize(callback) {
   var container = document.getElementById("feed");
   var FeedUrl = container.getAttribute("data-feed");
   var feed = new google.feeds.Feed(FeedUrl);
-  feed.setNumEntries(99);
+  feed.setNumEntries(30);
   feed.load(function(result) {
     if (!result.error) {
       var videoSlider = document.getElementById("videos");
@@ -93,10 +93,10 @@ function initialize(callback) {
                 keyboardNavEnabled: true,
                 visibleNearby: {
                   enabled: true,
-                  centerArea: 0.35,
+                  centerArea: 0.45,
                   center: true,
-                  // breakpoint: 650,
-                  // breakpointCenterArea: 0.5,
+                  breakpoint: 650,
+                  breakpointCenterArea: 0.7,
                   navigateByClick:true,
                   navigateByCenterClick: false,
                 },

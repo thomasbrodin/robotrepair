@@ -45,9 +45,18 @@ h1.name {
   font-weight: 700
 }
 
+a.download-all {
+  font-family: $font-brand;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700
+}
 a {
   text-decoration: none;
   color:#232323;
+}
+a:hover {
+  color:$colored;
 }
 /* FONT-FACES 
 -------------------------------------------------- */

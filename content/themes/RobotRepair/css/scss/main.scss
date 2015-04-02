@@ -124,12 +124,15 @@ body.home span.title {
 	@include transform(scale(1.1));
 }
 section { 
-	padding:80px 0;
+	padding-top:80px;
 	@include media($mobile) {
 		padding-top:104px
 	}
 	&#feed{
 		padding:160px 0 80px
+	}
+	&#home {
+	  min-height: 700px;
 	}
 	&.wrap {
 		@include outer-container;
@@ -209,6 +212,7 @@ section {
 		background-color:#fe32ab;
 		height:40px;
 		width:100%;
+		@include clearfix;
 		@include media($smallscreen) {
 			height:240px;
 			padding:0!important;
@@ -217,6 +221,7 @@ section {
 				height: 100%;
 				position:relative;
 				overflow: hidden;
+				cursor:pointer;
 				@include span-columns(3, block-collapse);
 				@include omega(5n);
 				@include media($smallscreen) {
@@ -236,14 +241,27 @@ section {
 			    	background-color:$colored;
 			    	cursor: pointer;
 			    	z-index: 1;
-			    	@include transition(all, 0.7s, ease-out);
+			    	@include transition(all, 0.7s, ease);
 			    }
 			}			
+		}
+		.bottom-row {
+			@include outer-container;
+			a {
+				display :block;
+				float: right;
+		    	font-size: em(26);
+		    	padding:24px;
+			}
 		}
 	}
 }
 .track:hover .track-color{
-	@include transform(translatex(200%));
+	-ms-transform: translateX(200%);
+	-webkit-transform: translateX(200%);
+	-moz-transform: translateX(200%);
+	-o-transform: translateX(200%);
+	transform: translateX(200%);
 }
 
 section.full-width .row:nth-of-type(1) { 
@@ -347,7 +365,7 @@ a.link{
    	z-index:5;
    	text-align: center;
 	width: 100%;
-	margin-top: 25%;
+	margin-top: 22%;
 	font-size: em(18);
 	text-transform:uppercase;
 	font-weight:300;
