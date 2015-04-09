@@ -23,7 +23,9 @@ class StarterSite extends TimberSite {
 	}
 
 	function add_to_context( $context ) {
-		$context['menu'] = new TimberMenu();
+		$context['menu'] = new TimberMenu('Overlay Menu');
+		$context['work_main'] = new TimberMenu('Work Menu');
+		$context['work_sub'] = new TimberMenu('Work Sub-Menu');
 		$context['site'] = $this;
 		return $context;
 	}

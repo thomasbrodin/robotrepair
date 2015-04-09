@@ -38,9 +38,18 @@
 		    </div>
 		    <div class="subnav">
 		    	{% set parent = TimberPost(post.parent) %}
-		        <ul>
-		        	{% for child in parent.children %}
-		        		<li><a href="{{child.link}}">{{child.title}}</a></li>
+		        <ul class="work">
+		        	{% for item in work_main.get_items %}
+		        		<li class="nav-main-item{{item.current ? ' active'}}">
+		        			<a href="{{item.get_path}}">{{item.title}}</a>        
+		        		</li>
+		            {% endfor %}
+		        </ul>
+		         <ul class="work-sub">
+		        	{% for item in work_sub.get_items %}
+		        		<li class="nav-main-item{{item.current ? ' active'}}">
+		        			<a href="{{item.get_path}}">{{item.title}}</a>        
+		        		</li>
 		            {% endfor %}
 		        </ul>
 		    </div>
@@ -51,7 +60,7 @@
 	        <nav>
 	           <ul id="menu-main-nav" class="nav"> 
 	           	{% for item in menu.get_items %}
-	           		<li class="nav-main-item{{item.current ? ' active'}}{% if cpt_current == item.title %} active{% endif %}">
+	           		<li class="nav-main-item{{item.current ? ' active'}}">
 	           			<a href="{{item.get_path}}">{{item.title}}</a>        
 	              	</li>
 	        	{% endfor %}

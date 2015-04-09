@@ -1,3 +1,4 @@
+php_value upload_max_filesize 64M
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>

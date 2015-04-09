@@ -19,3 +19,9 @@
 /content/index.php
 
 /template
+
+/content/themes/RobotRepair/.gitignore
+
+/content/themes/RobotRepair/config.codekit
+
+/content/themes/RobotRepair/css/scss/.sass-cache

@@ -5,31 +5,37 @@
         <div class="row">
             <div class="block large">
                 <a href="{{post.get_field('link_to_1')}}" class="link">{{post.get_field('title_1')}}</a>
-                <div class="slider" data-speed="{{post.get_field('speed_slideshow_1')}}">
-                	{% set work = post.get_field('work-slides') %}
-                		{% for image in work %}
-                    		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(640, 360, 'center')}}" alt="{{image.title}}">
-                    	{% endfor %}
-                </div>
+                <a href="{{post.get_field('link_to_1')}}">
+                    <div class="slider" data-speed="{{post.get_field('speed_slideshow_1')}}">
+                    	{% set work = post.get_field('work-slides') %}
+                    		{% for image in work %}
+                        		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(640, 360, 'center')}}" alt="{{image.title}}">
+                        	{% endfor %}
+                    </div>
+                </a>
             </div>
             <div class="block">
                 <div class="y-two">
                     <a href="{{post.get_field('link_to_2')}}" class="link">{{post.get_field('title_2')}}</a>
-                    <div class="slider" data-speed="{{post.get_field('speed_slideshow_2')}}">  
-                     {% set contact = post.get_field('contact_slides') %}  
-                       {% for image in contact %}
-                    		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
-                    	{% endfor %}       
-                    </div>
+                    <a href="{{post.get_field('link_to_2')}}">
+                        <div class="slider" data-speed="{{post.get_field('speed_slideshow_2')}}">  
+                         {% set contact = post.get_field('contact_slides') %}  
+                           {% for image in contact %}
+                        		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
+                        	{% endfor %}       
+                        </div>
+                    </a>
                 </div>
                 <div class="y-two">
                     <a href="{{post.get_field('link_to_3')}}" class="link">{{post.get_field('title_3')}}</a>
-                    <div class="slider" data-speed="{{post.get_field('speed_slideshow_3')}}">
-                    	{% set tracks = post.get_field('top_tracks_slides') %}  
-                      	{% for image in tracks %}
-                    		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
-                    	{% endfor %}
-                    </div>
+                    <a href="{{post.get_field('link_to_3')}}">
+                        <div class="slider" data-speed="{{post.get_field('speed_slideshow_3')}}">
+                        	{% set tracks = post.get_field('top_tracks_slides') %}  
+                          	{% for image in tracks %}
+                        		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
+                        	{% endfor %}
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -37,21 +43,25 @@
             <div class="block">
                 <div class="y-two">
                     <a href="{{post.get_field('link_to_4')}}" class="link">{{post.get_field('title_4')}}</a>
-                    <div class="slider" data-speed="{{post.get_field('speed_slideshow_4')}}">
-                    	{% set colla = post.get_field('collaborators_slides') %}  
-                        {% for image in colla %}
-                    		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
-                    	{% endfor %}
-                    </div>
+                    <a href="{{post.get_field('link_to_4')}}">
+                        <div class="slider" data-speed="{{post.get_field('speed_slideshow_4')}}">
+                        	{% set colla = post.get_field('collaborators_slides') %}  
+                            {% for image in colla %}
+                        		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
+                        	{% endfor %}
+                        </div>
+                    </a>
                 </div>
                 <div class="y-two">
                     <a href="{{post.get_field('external_link_1')}}" class="link">{{post.get_field('title_5')}}</a>
-                    <div class="slider" data-speed="{{post.get_field('speed_slideshow_5')}}">
-                    	{% set blog = post.get_field('blog_slides') %}
-                       {% for image in blog %}
-                    		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
-                    	{% endfor %}
-                    </div>
+                    <a href="{{post.get_field('external_link_1')}}">
+                        <div class="slider" data-speed="{{post.get_field('speed_slideshow_5')}}">
+                        	{% set blog = post.get_field('blog_slides') %}
+                           {% for image in blog %}
+                        		<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
+                        	{% endfor %}
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="block large">

@@ -6,7 +6,17 @@
 	        <article class="page-content">
 	        	{{post.content}}
 	        </article>
-	    </div>
+    </div>
+    <div class="row">
+      <div class="la">
+        {{post.get_field('infos_la')}}
+         <a href="mailto:{{post.get_field('email_la')}}">{{post.get_field('email_la')}}</a>
+      </div>
+      <div class="ny">
+         {{post.get_field('infos_ny')}}
+         <a href="mailto:{{post.get_field('email_ny')}}">{{post.get_field('email_ny')}}</a>
+      </div>
+    </div>
 	</section>
 
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
