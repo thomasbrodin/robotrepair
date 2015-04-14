@@ -35,7 +35,6 @@ h1.name {
   text-transform: uppercase;
   font-weight: 300;
   font-size: em(26);
-  letter-spacing: 0.01em;
 }
 h2 {
   font-size: em(24);
@@ -64,16 +63,17 @@ p {
   margin-bottom: 5px;
   font-weight: 300;
 }
-a.download-all {
-  font-family: $font-stack;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  font-weight: 400
-}
 a {
   text-decoration: none;
   color:#232323;
   font-weight: 400
+}
+a.download-all {
+  text-transform: uppercase;
+  font-weight: 300
+}
+h1.name a {
+  font-weight: 300
 }
 a:hover {
   color:$colored;
