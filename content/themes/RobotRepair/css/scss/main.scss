@@ -100,7 +100,7 @@ body.home span.title {
 	.logo-wrap{
 		@include span-columns(5);
 		position:relative;
-		top:63%;
+		top:64%;
 		.logo-inner{
 		@include transition(all, 0.7s, ease-out);
 		@include transform(scale(0.9));
@@ -119,11 +119,12 @@ body.home span.title {
 			}
 			p {
 				font-family: $font-stack;
+				text-transform:uppercase;
 				clear:both;
 				color:#fff;
 				text-align: right;
-				padding:7px 11px 0 0;
-				font-size:em(30);
+				padding:7px 14px 0 0;
+				font-size:em(18);
 				@include media($mobile) {
 					font-size:em(14);
 				}
@@ -169,11 +170,14 @@ section {
 		  			@include span-columns(10, block-collapse);
 		  			a.link {
 		  				font-size: em(42);
-		  				font-weight:400;
+		  				font-weight:600;
 		  			}
 		  		}
 			  	.y-two {
 		  			height: 50%;
+		  			a.link {
+		  				font-weight:600;
+		  			}
 		  		}
 		    }
 		    .friend {
