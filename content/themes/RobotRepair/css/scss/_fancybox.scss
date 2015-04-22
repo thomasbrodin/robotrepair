@@ -107,6 +107,17 @@
 	cursor: pointer;
 	z-index: 8040;
 }
+.fancybox-close-logo {
+	background: url('../img/robot-repair.png') center center no-repeat;
+	position: absolute;
+	top: -100px;
+	margin-left:-75px;
+	left:50%;
+	width: 150px;
+	height: 65px;
+	cursor: pointer;
+	z-index: 8040;
+}
 
 .fancybox-nav {
 	position: absolute;
