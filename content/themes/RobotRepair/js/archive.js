@@ -23,26 +23,19 @@ function initialize(callback) {
         });
         var figure = document.createElement("figure");
         var video = document.createElement('video');
-        setAttributes(video , {
-            "class" : "video-js vjs-sublime-skin vjs-big-play-centered",
-            "id" : "video-"+i,
-            "width": "640",
-            "height" : "360"
-        });
         if (entry.mediaGroups) {
             var imgSrc = entry.mediaGroups[0].contents[0].thumbnails[0].url;
             var img = document.createElement('img');
-            setAttributes( img , {
-                "src" : imgSrc,
-            });
+            img.setAttribute(  "src", imgSrc);
             figure.appendChild(img);
             var mediaSrc = entry.mediaGroups[0].contents[0].url;
-            var source = document.createElement('source');
-            setAttributes( source , {
+            setAttributes(video , {
+                "class" : "video-js vjs-sublime-skin vjs-big-play-centered",
+                "id" : "video-"+i,
+                "width": "640",
+                "height" : "360",
                 "src" : mediaSrc,
-                "type" : "video/mp4"
             });
-            video.appendChild(source);
         }
         var fragment = document.createDocumentFragment();
         var contents = fragment.appendChild(document.createElement("div"));
@@ -60,7 +53,7 @@ function initialize(callback) {
         wrap.appendChild(caption);
         wrap.appendChild(video);
         videoSlider.appendChild(wrap);
-        videojs("video-"+i, { "controls": true, "autoplay": false, "preload": "auto" });
+        videojs("video-"+i, { "controls": true, "autoplay": false, "preload": "metadata" });
       }
       callback();
     }
