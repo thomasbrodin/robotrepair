@@ -7,7 +7,11 @@
 	            <article class="friend">
 	                <a href="#">
 	                    <figure>
-	                        <img src="{{TimberImage(item.collaborator_image).src|resize(420, 420, 'center')}}"/>
+	                    	{% if item.collaborator_image %}
+	                        	<img src="{{TimberImage(item.collaborator_image).src|resize(420, 420, 'center')}}"/>
+	                        {% else %}
+	                        	<img src="http://placehold.it/420&text=Missing+Image">
+	                        {% endif %}
 	                        <div>
 	                            <figcaption>
 	                                <h4>{{ item.collaborator_name }}</h4>

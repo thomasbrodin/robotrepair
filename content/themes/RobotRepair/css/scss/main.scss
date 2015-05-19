@@ -193,6 +193,8 @@ section {
 		    }
 		    .friend {
 		    	@include span-columns(3);
+		    	@include omega(5n);
+		    	margin-bottom: 1.80%;
 		    	@include media($smallscreen) {
 					@include span-columns(2);
 				}
@@ -357,7 +359,16 @@ section.full-width .row:nth-of-type(11) {
 section.full-width .row:nth-of-type(12) { 
 	@include pad(0 0 0 16em); 
 }
-
+.loader {
+	background: url('../img/loading.gif') center center no-repeat;
+	height: 32px;
+    left: 50%;
+    margin: -16px;
+    position: absolute;
+    top: 45%;
+    width: 32px;
+    z-index: 0;
+}
 .slider {
   width: 100%;
   height: 100%;

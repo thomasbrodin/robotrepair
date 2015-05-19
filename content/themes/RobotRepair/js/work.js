@@ -10,48 +10,120 @@
             $('#trigger-overlay').removeClass('white');
         }
     });
-    var data = $('[data-api-url]').data();
-    $.getJSON('/api?url='+data.apiUrl, displayElements);
-    function displayElements(data) {
-      var thumbGrid = '<div class="thumbs">';
-      var videoOverlay = '<div class="videoSlider">';
-      $.each(data, function( i, item ) {
-        thumbGrid += '<article><a tabindex="1" id="slide-'+i+'" class="fancybox" href="#popup">';
-        thumbGrid += '<figure>';
-        $.each(item.thumbnail, function(k, thumb){
-          if (k === 0) {
-            var thUrl = thumb.url;
-            thumbGrid += '<img src="' + thUrl + '" alt="' + item.title + '" title="' + item.title + '"/>';
-          }
-        });
-        $.each(item.credit, function(k, title){
-          if( title.role == 'client'){
-            var titleHover = title.content;
-            thumbGrid += '<div><figcaption>';
-            thumbGrid += '<h4>' + titleHover + '</h4>';
-            thumbGrid += '</figcaption></div>';
-          }
-        });
-        thumbGrid += '</figure></a></article>';
-        videoOverlay += '<div>';
-        videoOverlay += '<h4 class="rsCaption">' + item.title + '</h4>';
-        var videoObj = item.content[0].url;
-        videoOverlay += '<video id="video-'+i+'" class="video-js vjs-sublime-skin vjs-big-play-centered" src="' + videoObj + '"></video>';
-        videoOverlay += '</div>';
-      });
-      $('section#feed').html(thumbGrid+ "</div>");
-      $('#popup').html(videoOverlay+ "</div>");
-      $('.video-js').each(function(index) {
-        var myPlayer = videojs("video-"+index, {
-          "controls": true,
-          "autoplay": false,
-          "preload": "auto",
-          "height":360,
-          "width": 640
-        });
-      });
+    // Get encoded Cached Feed Url
+    function ajaxCall() {
+      var data = $('[data-api-url]').data();
+      return $.getJSON('/api?url='+data.apiUrl).then(displayElements);
     }
-    $("#feed").on("focusin", function(){
+    // Display Elements from feed.
+    function displayElements(data) {
+        var thumbGrid = '<div class="thumbs">';
+        var videoOverlay = '<div class="videoSlider">';
+        var len = data.length,
+            i = 0;
+            for (i; i < len; i++) {
+              item = data[i];
+              var thUrl = item.thumbnail[0].url;
+              var videoObj = item.content[0].url;
+              thumbGrid += '<article><a tabindex="1" id="slide-'+i+'" class="fancybox" href="#popup">';
+              thumbGrid += '<figure>';
+              thumbGrid += '<img src="' + thUrl + '" alt="' + item.title + '" title="' + item.title + '"/>';
+              if ( typeof(item.credit) !== 'undefined'){
+                var lenCredit = item.credit.length, j = 0;
+                for (j; j < lenCredit; j++) {
+                  if (item.credit[j].role == 'client') {
+                    thumbGrid += '<div><figcaption>';
+                    thumbGrid += '<h4>' + item.credit[j].content + '</h4>';
+                    thumbGrid += '</figcaption></div>';
+                  }
+                }
+              } else {
+                thumbGrid += '<div><figcaption>';
+                thumbGrid += '<h4>'+ item.title +'</h4>';
+                thumbGrid += '</figcaption></div>';
+              }
+              thumbGrid += '</figure></a></article>';
+              videoOverlay += '<div>';
+              videoOverlay += '<h4 class="rsCaption">' + item.title + '</h4>';
+              videoOverlay += '<video id="video-'+i+'" class="video-js vjs-sublime-skin vjs-big-play-centered"';
+              videoOverlay += 'poster="' +thUrl+'" src="' + videoObj + '"></video>';
+              videoOverlay += '</div>';
+            }
+        $('section#feed').html(thumbGrid+ "</div>");
+        $('#popup').html(videoOverlay+ "</div>");
+    }
+    ajaxCall().then(function(returndata){
+      $('.loader').fadeOut();
+      // Check if work landing page
+      var landing = $.inArray( "recent", window.location.pathname.split( '/' ));
+      if (landing == -1) {
+        $('#slide-1').fancybox({
+          type: 'inline',
+          padding   : 0,
+          margin    : 0,
+          closeClick  : false,
+          openEffect  : 'none',
+          closeEffect : 'none',
+          autoSize:false,
+          height:410,
+          width:'100%',
+          tpl: {
+            closeBtn :'<a title="Back to Thumbnails View" class="fancybox-item fancybox-close-logo" href="javascript:;"></a>'
+          },
+          beforeLoad : function(){
+            $('.video-js').each(function(index) {
+              var myPlayer = videojs("video-"+index, {
+                  "controls": true,
+                  "autoplay": false,
+                  "preload": "metadata",
+                  "height":360,
+                  "width": 640
+              });
+            });
+          },
+          afterShow : function() {
+            var slider = $('.videoSlider').royalSlider({
+              addActiveClass: true,
+              controlNavigation : 'none',
+              arrowsNav : false,
+              loop: true,
+              fadeinLoadedSlide:false,
+              globalCaption: true,
+              globalCaptionInside: false,
+              keyboardNavEnabled: true,
+              visibleNearby: {
+                enabled: true,
+                centerArea: 0.6,
+                center: true,
+                breakpoint: 640,
+                breakpointCenterArea: 1,
+                navigateByClick:true,
+                navigateByCenterClick: false,
+              },
+            }).data('royalSlider');
+            videojs("video-0").ready(function(){
+              var myPlayer = this;
+                setTimeout(function(){
+                    myPlayer.play();
+                }, 100);
+            });
+            slider.ev.on('rsBeforeMove', function(event) {
+              current = slider.currSlideId;
+              videojs("video-"+current).ready(function(){
+              var myPlayer = this;
+                  myPlayer.pause();
+              });
+            });
+            slider.ev.on('rsAfterSlideChange', function(event) {
+              current = slider.currSlideId;
+              videojs("video-"+current).ready(function(){
+              var myPlayer = this;
+                  myPlayer.play();
+              });
+            });
+          },
+        }).trigger('click');
+      }
       $('.fancybox').each(function(index){
         $(this).fancybox({
           type: 'inline',
@@ -65,6 +137,17 @@
           width:'100%',
           tpl: {
             closeBtn :'<a title="Back to Thumbnails View" class="fancybox-item fancybox-close-logo" href="javascript:;"></a>'
+          },
+          beforeLoad : function(){
+            $('.video-js').each(function(index) {
+              var player = videojs("video-"+index, {
+                  "controls": true,
+                  "autoplay": false,
+                  "preload": "metadata",
+                  "height":360,
+                  "width": 640
+                });
+            });
           },
           afterShow : function() {
             var slider = $('.videoSlider').royalSlider({
@@ -87,17 +170,22 @@
               },
             }).data('royalSlider');
             slider.goTo(index);
-            $('video').bind('play', function() {
-                activated = this;
-                $('video').each(function() {
-                    if(this != activated) this.pause();
-                });
+            videojs("video-"+index).ready(function(){
+              var myPlayer = this;
+                  myPlayer.play();
             });
-            $(".video-js").click(function(){
-                activated = this;
-                $('.video-js').each(function() {
-                    if(this != activated) _V_($(this).attr("id")).pause();
-                });
+            slider.ev.on('rsBeforeMove', function(event) {
+              videojs("video-"+index).ready(function(){
+              var myPlayer = this;
+                  myPlayer.pause();
+              });
+            });
+            slider.ev.on('rsAfterSlideChange', function(event) {
+              current = slider.currSlideId;
+              videojs("video-"+current).ready(function(){
+              var myPlayer = this;
+                  myPlayer.play();
+              });
             });
           },
         });
