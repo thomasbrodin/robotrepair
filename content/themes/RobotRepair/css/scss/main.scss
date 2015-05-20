@@ -156,6 +156,7 @@ section {
 	}
 	&#home {
 	  min-height: 700px;
+	  display: none
 	}
 	&#info {
 	  padding-bottom:40px
@@ -426,8 +427,9 @@ section.full-width .row:nth-of-type(12) {
 }
 
 .gutted {
-	padding:0 22px;
+	padding:10px 22px;
 }
+
 a.link{
    	color:#fff;
    	text-decoration: none;

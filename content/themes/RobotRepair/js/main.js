@@ -11,18 +11,22 @@
 			paddingFooter = 50;
 			gridHeight.css({ height: (diffH - paddingFooter)});
 		}
-		$('.slider').each(function(){
-			$(this).royalSlider({
-				controlNavigation : 'none',
-				arrowsNav : false,
-				transitionType : 'fade',
-				imageScalePadding : 0,
-				imageScaleMode:'fill',
-				autoPlay: {
-					enabled: true,
-					pauseOnHover: true,
-					delay:$(this).attr('data-speed'),
-				},
+		$(window).load(function() {
+			$('.loader').fadeOut();
+			$('#home').fadeIn();
+			$('.slider').each(function(){
+				$(this).royalSlider({
+					controlNavigation : 'none',
+					arrowsNav : false,
+					transitionType : 'fade',
+					imageScalePadding : 0,
+					imageScaleMode:'fill',
+					autoPlay: {
+						enabled: true,
+						pauseOnHover: true,
+						delay:$(this).attr('data-speed'),
+					},
+				});
 			});
 		});
 		$(window).scroll(function() {

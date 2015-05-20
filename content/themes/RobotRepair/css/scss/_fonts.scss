@@ -82,6 +82,21 @@ b,strong {
   font-weight: 600
 }
 
+@media screen and (max-width: 600px) {
+    div.fancybox-inner {
+      max-height:300px
+    }
+    .videoSlider {
+      height:250px!important
+    }
+    .video-js {
+      width:80%!important;
+    }
+    h4.rsCaption {
+      font-size: 1em
+    }
+}
+
 /* FONT-FACES 
 -------------------------------------------------- */
 

@@ -218,3 +218,6 @@ body.vjs-full-window {
     width: 100%; }
   .video-js.vjs-using-native-controls .vjs-poster {
     display: none; }
+  .vjs-has-started .vjs-poster {
+    display: none;
+  }
