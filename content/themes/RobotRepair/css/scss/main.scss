@@ -159,7 +159,7 @@ section {
 	  display: none
 	}
 	&#info {
-	  padding-bottom:40px
+	  padding-bottom:100px
 	}
 	&.wrap {
 		@include outer-container;
@@ -197,10 +197,12 @@ section {
 		    	@include omega(5n);
 		    	margin-bottom: 1.80%;
 		    	@include media($smallscreen) {
-					@include span-columns(2);
+		    		@include omega(1n);
+					@include span-columns(4);
+					margin-bottom:4%;
 				}
 				@include media($mobile) {
-					@include span-columns(1,block-collapse);
+					@include span-columns(1);
 				}
 				figure {
 					@include media($smallscreen) {
@@ -213,7 +215,7 @@ section {
 		    }
 		    .page-content {
 		    	@include fill-parent;
-		    	padding-bottom:20px
+		    	padding-bottom:60px
 		    }
 		    .la{
 		    	@include span-columns(8);
@@ -253,6 +255,9 @@ section {
 			}
 			figure {
 				height:180px;
+				background-position: center center;
+  				background-repeat: no-repeat;
+  				background-color:#CCC;
 				@include media($smallscreen) {
 					height:250px
 				}
@@ -498,12 +503,23 @@ article	figure {
 		}
 	}
 }
-
+figure.is-loading {
+  background-image: url('../img/preloader-grey.gif');
+}
+figure.is-broken {
+  background-image: url('http://desandro.github.io/imagesloaded/assets/broken.png');
+  width: 320px;
+}
+figure.is-loading img,
+figure.is-broken img {
+  opacity: 0;
+}
 .cssanimations figure h4 {
 	opacity:0
 }
 figure:hover {
-	background:#111
+  background-color: #111!important;
+  background-image: none!important;
 }
 figure:hover h4{
 	@include animation-name(captionUp);

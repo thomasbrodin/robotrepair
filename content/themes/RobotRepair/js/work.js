@@ -10,6 +10,14 @@
             $('#trigger-overlay').removeClass('white');
         }
     });
+    // triggered after each item is loaded
+    function onProgress( imgLoad, image ) {
+      var $item = $( image.img ).parent();
+      $item.removeClass('is-loading');
+      if ( !image.isLoaded ) {
+        $item.addClass('is-broken');
+      }
+    }
     // Get encoded Cached Feed Url
     function ajaxCall() {
       var data = $('[data-api-url]').data();
@@ -17,6 +25,8 @@
     }
     // Display Elements from feed.
     function displayElements(data) {
+        var containerGrid = $('section#feed');
+        var containerVideo = $('#popup');
         var thumbGrid = '<div class="thumbs">';
         var videoOverlay = '<div class="videoSlider">';
         var len = data.length,
@@ -26,7 +36,7 @@
               var thUrl = item.thumbnail[0].url;
               var videoObj = item.content[0].url;
               thumbGrid += '<article><a tabindex="1" id="slide-'+i+'" class="fancybox" href="#popup">';
-              thumbGrid += '<figure>';
+              thumbGrid += '<figure class="is-loading">';
               thumbGrid += '<img src="' + thUrl + '" alt="' + item.title + '" title="' + item.title + '"/>';
               if ( typeof(item.credit) !== 'undefined'){
                 var lenCredit = item.credit.length, j = 0;
@@ -49,8 +59,9 @@
               videoOverlay += 'poster="' +thUrl+'" src="' + videoObj + '"></video>';
               videoOverlay += '</div>';
             }
-        $('section#feed').html(thumbGrid+ "</div>");
-        $('#popup').html(videoOverlay+ "</div>");
+        containerGrid.html(thumbGrid+ "</div>");
+        containerGrid.imagesLoaded().progress(onProgress);
+        containerVideo.html(videoOverlay+ "</div>");
     }
     ajaxCall().then(function(returndata){
       $('.loader').fadeOut();
@@ -175,7 +186,8 @@
                   myPlayer.play();
             });
             slider.ev.on('rsBeforeMove', function(event) {
-              videojs("video-"+index).ready(function(){
+              current = slider.currSlideId;
+              videojs("video-"+current).ready(function(){
               var myPlayer = this;
                   myPlayer.pause();
               });
