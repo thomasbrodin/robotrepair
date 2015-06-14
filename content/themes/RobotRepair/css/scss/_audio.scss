@@ -40,6 +40,18 @@
 	line-height: 0;
 }
 
+.jp-flat-audio.collab {
+	width:40px;
+	float:left;
+	margin-right:10px
+}
+.jp-flat-audio.collab .jp-button {
+	border: 1px solid #FFF;
+}
+.jp-flat-audio.collab.jp-state-playing .jp-button{
+	border-color:#FF8520
+}
+
 .jp-flat-audio *:focus {
 	outline:none;
 }
@@ -94,6 +106,9 @@
 
 .jp-flat-audio.jp-state-playing .jp-play:before {
 	content: '\2016';
+}
+.jp-flat-audio.collab.jp-state-playing .jp-play:before{
+	color:#FF8520
 }
 .jp-flat-audio .jp-play:before {
 	content: '\25b6';

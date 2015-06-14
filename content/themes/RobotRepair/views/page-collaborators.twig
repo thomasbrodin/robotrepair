@@ -4,23 +4,55 @@
 	<section id="collaborator" role="main" class="wrap">
 		 <div class="row">
 		 	{% for item in post.get_field('collaborator')  %}
-	            <article class="friend">
-	                <a href="#">
-	                    <figure>
-	                    	{% if item.collaborator_image %}
-	                        	<img src="{{TimberImage(item.collaborator_image).src|resize(420, 420, 'center')}}"/>
-	                        {% else %}
-	                        	<img src="http://placehold.it/420&text=Missing+Image">
-	                        {% endif %}
-	                        <div>
-	                            <figcaption>
-	                                <h4>{{ item.collaborator_name }}</h4>
-	                            </figcaption>
-	                        </div>
-	                    </figure>
-	                </a>
+	            <article class="friend"> 
+                    <figure>
+                    	{% if item.collaborator_image %}
+                        	<img src="{{TimberImage(item.collaborator_image).src|resize(425, 425, 'center')}}"/>
+                        {% else %}
+                        	<img src="http://placehold.it/425">
+                        {% endif %}
+                        <div>
+                            <figcaption>
+                                <h4>{{ item.collaborator_name }}</h4>
+                            </figcaption>
+                        </div>
+                    </figure>  
+                    {% if item.collaborator_image %}
+                    	<div class="grow">
+				        	<div class="friend-wrap">
+				        		<img src="{{TimberImage(item.collaborator_image).src|resize(425, 425, 'center')}}"/>			   
+				        		<div class="friend-header">
+				        			<h4>{{ item.collaborator_name }}</h4>
+				        			<div class="friend-tracks">
+				        				{% for tracks in item.collaborator_rep %}
+				        					<div id="jplayer-audio-{{ loop.index }}" class="jp-jplayer" data-url="{{tracks.collaborator_tracks}}"></div>
+
+							                <div id="jp-container-audio-{{ loop.index }}" class="jp-flat-audio collab" role="application" aria-label="media player">
+							                    <div class="jp-play-control jp-control">
+							                        <button class="jp-play jp-button" role="button" aria-label="play" tabindex="0"></button>
+							                    </div>
+							                      
+							                    <div class="jp-no-solution">
+							                        Media Player Error<br />
+							                        Update your browser or Flash plugin
+							                    </div>
+							                </div>
+										{% endfor %}
+				        			</div>
+				        		</div>
+				        		<div class="friend-desc">
+				            		<p>{{ item.collaborator_bio }}</p> 
+				            		{% if item.collaborator_link %}
+				            			<a href="{{ item.collaborator_link }}" target="_blank">Link</a> 
+				            		{% endif %}
+				            	</div>
+				            </div>     
+				        </div>
+				     {% endif %} 
 	            </article>
 	        {% endfor %}
+	      
         </div>
 	</section>
 {% endblock %}
+

@@ -49,7 +49,7 @@
 }
 
 .fancybox-inner {
-	overflow: hidden;
+	overflow: visible!important
 }
 
 .fancybox-type-iframe .fancybox-inner {
@@ -98,25 +98,18 @@
 }
 
 .fancybox-close {
-	display:none;
+	background: url('../img/cross.png') center center no-repeat;
+	display:block;
 	position: absolute;
-	top: -18px;
-	right: -18px;
-	width: 36px;
-	height: 36px;
+	top: -95px;
+	right: 26px;
+	width: 30px;
+	height: 30px;
 	cursor: pointer;
 	z-index: 8040;
-}
-.fancybox-close-logo {
-	background: url('../img/robot-repair.png') center center no-repeat;
-	position: absolute;
-	top: -100px;
-	margin-left:-75px;
-	left:50%;
-	width: 150px;
-	height: 65px;
-	cursor: pointer;
-	z-index: 8040;
+	@include media($mobile) {
+		top: -105px;
+	}
 }
 
 .fancybox-nav {
@@ -273,11 +266,6 @@
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
 	   only screen and (min--moz-device-pixel-ratio: 1.5),
 	   only screen and (min-device-pixel-ratio: 1.5){
-
-	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-		background-image: url('../img/fancybox_sprite@2x.png');
-		background-size: 44px 152px; /*The size of the normal image, half the size of the hi-res image*/
-	}
 
 	#fancybox-loading div {
 		background-image: url('../img/fancybox_loading@2x.gif');

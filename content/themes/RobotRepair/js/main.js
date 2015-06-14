@@ -14,21 +14,31 @@
 		$(window).load(function() {
 			$('.loader').fadeOut();
 			$('#home').fadeIn();
-			$('.slider').each(function(){
-				$(this).royalSlider({
-					controlNavigation : 'none',
-					arrowsNav : false,
-					transitionType : 'fade',
-					imageScalePadding : 0,
-					imageScaleMode:'fill',
-					autoPlay: {
-						enabled: true,
-						pauseOnHover: true,
-						delay:$(this).attr('data-speed'),
-					},
-				});
+			var slider = $('.slider').royalSlider({
+				controlNavigation : 'none',
+				arrowsNav : false,
+				transitionType : 'fade',
+				imageScalePadding : 0,
+				imageScaleMode:'fill',
+				autoPlay: {
+					enabled: true,
+				},
+			}).data('royalSlider');
+			$('.block figure').bind('mouseenter',function(e) {
+				e.preventDefault();
+				slider.toggleAutoPlay();
+			}).bind('mouseleave',function(e) {
+				e.preventDefault();
+				slider.toggleAutoPlay();
 			});
 		});
+		$('article.friend').click(function(e) {
+			e.preventDefault();
+			$('figure').removeClass('hide');
+			$('.grow').removeClass('open');
+			$(this).children("figure").addClass('hide');
+			$(this).children(".grow").addClass('open');
+        });
 		$(window).scroll(function() {
 			var scrolled = Math.max(0, $(window).scrollTop());
 			if ( scrolled >= 10 ){

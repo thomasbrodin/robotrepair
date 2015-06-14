@@ -171,45 +171,179 @@ section {
 		  	height: 15em;
 			height: calc(100% / 2);
 			position:relative;
+			/* home Thumbnails */
 		  	.block {
-		  		overflow: hidden;
-	    		background-color: $colored;
-	    		position:relative;
-	    		height: 100%;
-	    		cursor:pointer;
+		  		height:100%;
+		  		position:relative;
+		  		background-color: $colored;
 	    		@include span-columns(5, block-collapse);
 	    		&.large {
 		  			@include span-columns(10, block-collapse);
-		  			a.link {
+		  			h2{
 		  				font-size: em(42);
-		  				font-weight:600;
 		  			}
 		  		}
 			  	.y-two {
 		  			height: 50%;
-		  			a.link {
-		  				font-weight:600;
-		  			}
 		  		}
+		  		figure {
+	  				position:relative;
+	  				margin: 0 auto;
+				  	height: 100%;
+				  	overflow: hidden;
+				  	cursor: pointer;
+				  	.caption:before {
+					  content: "";
+					  display: inline-block;
+					  height: 100%;
+					  text-align: center;
+					  vertical-align: middle;
+					}
+					.caption {
+					  height: 100%;
+					  position: absolute;
+					  text-align:center;
+					  top: 0;
+					  width: 100%;
+					  figcaption {
+						  max-width: 90%;
+						  display: inline-block;
+						  vertical-align: middle;
+						 @include backface-visibility(hidden);
+					  }
+					}
+					a:hover {
+						color:$colored
+					}
+	  			}
 		    }
+		    /* Collaborator Thumbnails */
 		    .friend {
-		    	@include span-columns(3);
-		    	@include omega(5n);
-		    	margin-bottom: 1.80%;
+		    	margin-bottom: 20px;
+		    	@include media(930px, 12) {
+		    		@include span-columns(3);
+		    		@include omega(4n);
+		    	}
 		    	@include media($smallscreen) {
-		    		@include omega(1n);
-					@include span-columns(4);
-					margin-bottom:4%;
+		    		@include omega(2n);
+					@include span-columns(2);
 				}
 				@include media($mobile) {
 					@include span-columns(1);
 				}
 				figure {
+					@include media(930px) {
+						height: 215px
+					}
 					@include media($smallscreen) {
-						height: 450px
+						display: none
 					}
 					@include media($mobile) {
-						height:420px
+						display: none
+					}
+					&.hide {
+						display: none!important
+					}
+					img {
+						@include media($smallscreen) {
+							height:100%;
+							max-width:none;
+						}
+						@include media($mobile) {
+							height:auto;
+							width:100%
+						}
+					}
+				}
+				/* Grow on CLick */
+			    .grow { 
+			    	background-color:$colored;
+			    	opacity: 0;
+			    	@include transform-origin(0 0);
+			    	@include media(930px, 12) {
+			    		@include span-columns(6);
+			    		@include omega(4n);
+			    	}
+			    	@include media($smallscreen) {
+			    		@include omega(2n);
+						@include span-columns(4);
+						opacity: 1;
+						position:relative;
+					}
+					@include media($mobile) {
+						@include span-columns(1);
+						opacity: 1
+					}
+					@include transition(all .7s ease-out); 
+					position:absolute;
+					&.open {
+						@include animation-name(blockOpen);
+						@include animation-duration(0.35s);
+						@include animation-timing-function(ease-out);
+						@include animation-iteration-count(1);
+						@include animation-direction(normal);
+						@include animation-fill-mode(forwards);
+						@include animation-delay(0.2s);
+						z-index:99;
+					}
+					.friend-wrap{
+						height:450px;
+						cursor: pointer;
+						z-index:99;
+						img {
+							width:49%;
+							height:auto;
+							float:left
+						}
+						.friend-header {				
+							float:left;
+							height:50%;
+							width:50%;
+							h4 {
+								color:#fff;
+								text-transform: uppercase;
+								font-size: em(18);
+								line-height: 1.1;
+								text-align: left;
+								padding:2em 1em;
+							}
+							.friend-tracks{
+ 								padding: 0 1.2em;
+ 							}
+						}
+						.friend-desc {			
+							float:left;
+							width:100%;
+							height:50%;
+							background-color:#75c1db;
+							p {
+								font-size:em(14);
+								color:$colored;
+								font-weight:400;
+								padding:1em;
+								text-align: left;
+							}
+							a {
+								display: block;
+								text-align: right;
+								padding-right:1em;
+								text-decoration: none;
+								color: $colored;
+								line-height: 1;
+							}
+						}
+					}
+				}
+				&:nth-child(4n) .grow{
+					@include transform-origin(100% 0);
+				  	@include media(930px, 12) {
+			    		@include shift(-3 of 12);
+			    	}
+			    	@include media($smallscreen) {
+			    		@include shift(0);
+					}
+					@include media($mobile) {
+						@include shift(0);
 					}
 				}
 		    }
@@ -243,6 +377,7 @@ section {
 		    	}
 		    }
 		}
+		/* Work Thumbnails */
 		article {
 			float: left;
 			display: block;
@@ -254,34 +389,36 @@ section {
 				width: 100%
 			}
 			figure {
-				height:180px;
+				height:175px;
 				background-position: center center;
   				background-repeat: no-repeat;
   				background-color:#CCC;
 				@include media($smallscreen) {
-					height:250px
+					height:215px
 				}
 				@include media($mobile) {
-					height:270px
+					height:100%
 				}
 				img {
-				max-width: none;
-				height:100%;
-				width:auto
+					max-width: 100%;
+					height:auto;
+					@include media($mobile) {
+						width:100%;
+					}
 				}
 			}
 		}
 	}
 	&.full-width{
 		.row {	
-		background-color:#fe32ab;
-		height:40px;
-		width:100%;
-		@include clearfix;
-		@include media($smallscreen) {
-			height:240px;
-			padding:0!important;
-		}
+			background-color:#fe32ab;
+			height:40px;
+			width:100%;
+			@include clearfix;
+			@include media($smallscreen) {
+				height:240px;
+				padding:0!important;
+			}
 			.track {
 				height: 100%;
 				position:relative;
@@ -365,6 +502,7 @@ section.full-width .row:nth-of-type(11) {
 section.full-width .row:nth-of-type(12) { 
 	@include pad(0 0 0 16em); 
 }
+
 .loader {
 	background: url('../img/loading.gif') center center no-repeat;
 	height: 32px;
@@ -386,13 +524,49 @@ section.full-width .row:nth-of-type(12) {
 .fancy-wrap {
 	background-color:#000;
 	width:100%;
-	height:100%
+	height:100%;
+	padding:0
 }
 .logo-fancy {
-	max-width:150px;
-	margin:0 auto;
-	display:block;
-	padding-bottom:30px
+	max-width: 150px;
+	display: block;
+	padding-bottom: 30px;
+	position: absolute;
+	z-index: 99;
+	top: 0;
+	left: 50%;
+	margin-left: -75px;
+	margin-top: -105px;
+	@include media($mobile) {
+		max-width: 110px;
+		margin-left: -55px;
+	}
+}
+#slider-next, #slider-prev {
+	width:36px;
+	height:36px;
+	background:transparent;
+	background-position:center center;
+	background-repeat:no-repeat;
+	position: absolute;
+	cursor:pointer;
+  	top: 50%;
+  	margin-top:-38px;
+  	opacity: .6;
+  	@include media($mobile) {
+  		top:100%
+  	}
+}
+#slider-next {
+	background-image: url('../img/next.png');
+	right:18px;
+}
+#slider-prev {
+	background: url('../img/prev.png');
+	left:18px
+}
+#slider-next:hover, #slider-prev:hover {
+	opacity: 1
 }
 .videoSlider {
 	height:360px;
@@ -421,7 +595,7 @@ section.full-width .row:nth-of-type(12) {
 .videoSlider .rsGCaption {
   font-size: 16px;
   line-height: 18px;
-  padding: 12px 0 16px;
+  padding: 16px 0 0;
   background: #000;
   width: 100%;
   position: static;
@@ -429,31 +603,59 @@ section.full-width .row:nth-of-type(12) {
   left: auto;
   bottom: auto;
   text-align: center;
+  @include media($mobile) {
+  	font-size: 14px;
+  }
 }
 
 .gutted {
 	padding:10px 22px;
 }
 
-a.link{
+/* Animations */
+@include keyframes (blockOpen) {
+    0% {
+        opacity:0;
+        @include transform(scale(0.9));
+    }
+
+    100% {
+       opacity:1;
+        @include transform(scale(1));
+    }
+}
+
+@include keyframes (captionUp) {
+    0% {
+        opacity:0;
+        @include transform(translateY(-10px));
+    }
+
+    100% {
+       opacity:1;
+        @include transform(translateY(0px) rotate(0deg));
+    }
+}
+/* Home Thumbnails */
+figure h5,
+figure h2,{
+	font-weight: 600;
    	color:#fff;
    	text-decoration: none;
-   	position:absolute;
    	z-index:5;
    	text-align: center;
 	width: 100%;
-	left:0;
-	margin-top: 22%;
-	font-size: em(18);
 	text-transform:uppercase;
-	font-weight:300;
+	font-size:em(18);
 	letter-spacing:em(1);
 }
-.cssanimations a.link {
+.cssanimations figure h5,
+.cssanimations figure h2 {
 	opacity: 0;
 }
-.block.large:hover a.link,
-.block .y-two:hover a.link{
+
+.block figure:hover h5,
+.block figure:hover h2{
 	@include animation-name(captionUp);
 	@include animation-duration(0.35s);
 	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
@@ -463,6 +665,7 @@ a.link{
 	@include animation-delay(0.2s);
 }
 
+/* Work Thumbnails */
 article	figure {
 	position: relative;
 	margin: 0 auto;
@@ -503,6 +706,7 @@ article	figure {
 		}
 	}
 }
+
 figure.is-loading {
   background-image: url('../img/preloader-grey.gif');
 }
@@ -517,11 +721,11 @@ figure.is-broken img {
 .cssanimations figure h4 {
 	opacity:0
 }
-figure:hover {
+.thumbs figure:hover {
   background-color: #111!important;
   background-image: none!important;
 }
-figure:hover h4{
+.thumbs figure:hover h4{
 	@include animation-name(captionUp);
 	@include animation-duration(0.35s);
 	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
@@ -530,22 +734,29 @@ figure:hover h4{
 	@include animation-fill-mode(forwards);
 	@include animation-delay(0.2s);
 }
-figure:hover img {
+.thumbs figure:hover img {
     opacity: 0.2
 }
 
-@include keyframes (captionUp) {
-    0% {
-        opacity:0;
-        @include transform(translateY(-10px));
-    }
-
-    100% {
-       opacity:1;
-        @include transform(translateY(0px) rotate(0deg));
-    }
+/* Collaborators Page */
+.friend figure:hover {
+  background-color: #111!important;
+  background-image: none!important;
+}
+.friend figure:hover h4{
+	@include animation-name(captionUp);
+	@include animation-duration(0.35s);
+	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
+	@include animation-iteration-count(1);
+	@include animation-direction(normal);
+	@include animation-fill-mode(forwards);
+	@include animation-delay(0.2s);
+}
+.friend figure:hover img {
+    opacity: 0.2
 }
 
+/* Info Page */
 #map {
 	width: 100%;
 	height: 400px;

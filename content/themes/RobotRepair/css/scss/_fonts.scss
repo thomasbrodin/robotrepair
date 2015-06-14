@@ -6,7 +6,7 @@ $body-font-size: 1em !default;
 
 
 $max-width: em(940) !global;
-$smallscreen: new-breakpoint(max-width 900px 4);
+$smallscreen: new-breakpoint(max-width 930px 4);
 $mobile: new-breakpoint(max-width 480px 1);
 
 $grid-columns: 15 !global;

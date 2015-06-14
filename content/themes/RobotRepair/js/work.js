@@ -25,8 +25,8 @@
     }
     // Display Elements from feed.
     function displayElements(data) {
-        var containerGrid = $('section#feed');
-        var containerVideo = $('#popup');
+        var containerGrid = $('#feed');
+        var containerVideo = $('#videos');
         var thumbGrid = '<div class="thumbs">';
         var videoOverlay = '<div class="videoSlider">';
         var len = data.length,
@@ -76,11 +76,8 @@
           openEffect  : 'none',
           closeEffect : 'none',
           autoSize:false,
-          height:410,
+          height:360,
           width:'100%',
-          tpl: {
-            closeBtn :'<a title="Back to Thumbnails View" class="fancybox-item fancybox-close-logo" href="javascript:;"></a>'
-          },
           beforeLoad : function(){
             $('.video-js').each(function(index) {
               var myPlayer = videojs("video-"+index, {
@@ -132,6 +129,12 @@
                   myPlayer.play();
               });
             });
+            $('#slider-next').click(function() {
+              slider.next();
+            });
+            $('#slider-prev').click(function() {
+              slider.prev();
+            });
           },
         }).trigger('click');
       }
@@ -146,9 +149,6 @@
           autoSize:false,
           height:410,
           width:'100%',
-          tpl: {
-            closeBtn :'<a title="Back to Thumbnails View" class="fancybox-item fancybox-close-logo" href="javascript:;"></a>'
-          },
           beforeLoad : function(){
             $('.video-js').each(function(index) {
               var player = videojs("video-"+index, {
@@ -164,7 +164,8 @@
             var slider = $('.videoSlider').royalSlider({
               addActiveClass: true,
               controlNavigation : 'none',
-              arrowsNav : false,
+              arrowsNavAutoHide : false,
+              arrowsNav : true,
               loop: true,
               fadeinLoadedSlide:false,
               globalCaption: true,
@@ -198,6 +199,12 @@
               var myPlayer = this;
                   myPlayer.play();
               });
+            });
+            $('#slider-next').click(function() {
+              slider.next();
+            });
+            $('#slider-prev').click(function() {
+              slider.prev();
             });
           },
         });
