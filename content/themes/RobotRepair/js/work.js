@@ -147,7 +147,7 @@
           openEffect  : 'none',
           closeEffect : 'none',
           autoSize:false,
-          height:410,
+          height:360,
           width:'100%',
           beforeLoad : function(){
             $('.video-js').each(function(index) {
@@ -164,8 +164,7 @@
             var slider = $('.videoSlider').royalSlider({
               addActiveClass: true,
               controlNavigation : 'none',
-              arrowsNavAutoHide : false,
-              arrowsNav : true,
+              arrowsNav : false,
               loop: true,
               fadeinLoadedSlide:false,
               globalCaption: true,
@@ -182,6 +181,16 @@
               },
             }).data('royalSlider');
             slider.goTo(index);
+            $('#slider-next').click(function() {
+              next = slider.currSlideId;
+              slider.goTo(next);
+              console.log(next);
+            });
+            $('#slider-prev').click(function() {
+              prev = slider.currSlideId;
+              slider.goTo(prev);
+              console.log(prev);
+            });
             videojs("video-"+index).ready(function(){
               var myPlayer = this;
                   myPlayer.play();
@@ -199,12 +208,6 @@
               var myPlayer = this;
                   myPlayer.play();
               });
-            });
-            $('#slider-next').click(function() {
-              slider.next();
-            });
-            $('#slider-prev').click(function() {
-              slider.prev();
             });
           },
         });
