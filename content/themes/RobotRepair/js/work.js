@@ -65,6 +65,7 @@
     }
     ajaxCall().then(function(returndata){
       $('.loader').fadeOut();
+      $('.wrap').fadeIn();
       // Check if work landing page
       var landing = $.inArray( "recent", window.location.pathname.split( '/' ));
       if (landing == -1) {

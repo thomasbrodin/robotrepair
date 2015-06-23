@@ -5,7 +5,7 @@
 		<div class="row">
 		{% for item in post.get_field('tracks')  %}
 			
-			{% if loop.index is divisible by(5) %}
+			{% if loop.index is divisible by(6) %}
 				</div>
 				<div class="row">
 			{% endif %}
@@ -41,7 +41,13 @@
 
 		{% endfor %}
 		</div>
+
 		<div class="bottom-row">
-			<a class="download-all" target="_blank" href="{{post.get_field('download_all')}}">DOWNLOAD ALL</a>
+            <div class="inner">
+    			<a class="download-all" target="_blank" href="{{post.get_field('download_all')}}">DOWNLOAD ALL</a>
+            </div>
 		</div>
+
+    </section>
+
 {% endblock %}

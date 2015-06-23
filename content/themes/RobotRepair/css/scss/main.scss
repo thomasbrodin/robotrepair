@@ -143,9 +143,6 @@ body.home span.title {
 	@include transform(scale(1));
 }
 
-.logo-inner a:hover img{
-	@include transform(scale(1.1));
-}
 section { 
 	padding-top:80px;
 	@include media($mobile) {
@@ -156,6 +153,10 @@ section {
 	}
 	&#home {
 	  min-height: 700px;
+	}
+	&#best-tracks {
+	  min-height: 700px;
+	  padding-bottom:60px;
 	  display: none
 	}
 	&#info {
@@ -166,6 +167,7 @@ section {
 		height:100%;
 		z-index: 0;
 		position:relative;
+		display: none;
 		.row {
 		  	@include row();
 		  	height: 15em;
@@ -413,7 +415,7 @@ section {
 	&.full-width{
 		.row {	
 			background-color:#fe32ab;
-			height:40px;
+			height:30px;
 			width:100%;
 			@include clearfix;
 			@include media($smallscreen) {
@@ -425,16 +427,13 @@ section {
 				position:relative;
 				overflow: hidden;
 				cursor:pointer;
-				@include span-columns(3, block-collapse);
-				@include omega(5n);
+				@include media(930px, 12) {
+					@include span-columns(2, block-collapse);
+					@include omega(6n);
+				}
 				@include media($smallscreen) {
 					height:40px;
-					@include omega-reset(5n);
-				    @include span-columns(4, block-collapse);
-			    }
-			    @include media($mobile) {
-					height:40px;
-				    @include span-columns(1);
+					width:100!important;
 			    }
 			    .track-color {
 			    	display: block;
@@ -449,12 +448,21 @@ section {
 			}			
 		}
 		.bottom-row {
-			@include outer-container;
+			position:fixed;
+   			left:0px;
+   			bottom:0px;
+   			height:60px;
+   			width:100%;
+   			background:white;
+   			z-index:999;
+   			.inner {
+   				@include outer-container;
+   			}
 			a {
 				display :block;
 				float: right;
-		    	font-size: em(26);
-		    	padding:24px;
+		    	font-size: em(24);
+		    	padding:.6em 1em;
 			}
 		}
 	}
@@ -467,42 +475,19 @@ section {
 	transform: translateX(200%);
 }
 
-section.full-width .row:nth-of-type(1) { 
-	@include pad(0 0 0 8em); 
+$pad-left-8 : 0 0 0 8em;
+$pad-right-4 : 0 4em 0 0;
+$pad-left-4 : 0 0 0 4em;
+$pad-right-16 : 0 0 0 16em;
+
+$cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
+
+@for $i from 1 through length($cycle) {
+  section.full-width .row:nth-child(#{length($cycle)}n+#{$i}) { 
+  	padding:nth($cycle, $i)
+  }
 }
-section.full-width .row:nth-of-type(2) { 
-	@include pad(0 4em 0 0); 
-}
-section.full-width .row:nth-of-type(3) { 
-	@include pad(0 0 0 4em); 
-}
-section.full-width .row:nth-of-type(4) { 
-	@include pad(0 0 0 16em); 
-}
-section.full-width .row:nth-of-type(5) { 
-	@include pad(0 0 0 8em);
-}
-section.full-width .row:nth-of-type(6) { 
-	@include pad(0 4em 0 0);
-}
-section.full-width .row:nth-of-type(7) { 
-	@include pad(0 0 0 4em); 
-}
-section.full-width .row:nth-of-type(8) { 
-	@include pad(0 0 0 16em); 
-}
-section.full-width .row:nth-of-type(9) { 
-	@include pad(0 0 0 8em);
-}
-section.full-width .row:nth-of-type(10) { 
-	@include pad(0 4em 0 0);
-}
-section.full-width .row:nth-of-type(11) { 
-	@include pad(0 0 0 4em); 
-}
-section.full-width .row:nth-of-type(12) { 
-	@include pad(0 0 0 16em); 
-}
+
 
 .loader {
 	background: url('../img/loading.gif') center center no-repeat;
@@ -740,21 +725,17 @@ figure.is-broken img {
 }
 
 /* Collaborators Page */
+.cssanimations .friend figure h4 {
+	opacity:1
+}
 .friend figure:hover {
-  background-color: #111!important;
-  background-image: none!important;
+  background:transparent
 }
 .friend figure:hover h4{
-	@include animation-name(captionUp);
-	@include animation-duration(0.35s);
-	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
-	@include animation-iteration-count(1);
-	@include animation-direction(normal);
-	@include animation-fill-mode(forwards);
-	@include animation-delay(0.2s);
+	opacity:1
 }
 .friend figure:hover img {
-    opacity: 0.2
+    opacity: 0.8
 }
 
 /* Info Page */

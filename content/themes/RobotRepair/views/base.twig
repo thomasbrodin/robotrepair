@@ -9,11 +9,12 @@
 	<body class="{{body_class}}" data-template="base.twig">
 		
 		{% include 'header.twig' %}
+		
+		<div class="loader"></div>
 
 		{% block content %}
             Sorry, no content
         {% endblock %}
-		
 
 		{{ function('wp_footer') }}
 		<script>
