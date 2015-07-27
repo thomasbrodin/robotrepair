@@ -1,15 +1,5 @@
 (function($) {
   $(document).ready(function() {
-    $(window).scroll(function() {
-      var scrolled = $(window).scrollTop();
-      if ( scrolled >= 10 ){
-            $('header').addClass('scrolled');
-            $('#trigger-overlay').addClass('white');
-        } else {
-            $('header').removeClass('scrolled');
-            $('#trigger-overlay').removeClass('white');
-        }
-    });
     // triggered after each item is loaded
     function onProgress( imgLoad, image ) {
       var $item = $( image.img ).parent();
@@ -55,17 +45,26 @@
               thumbGrid += '</figure></a></article>';
               videoOverlay += '<div>';
               videoOverlay += '<h4 class="rsCaption">' + item.title + '</h4>';
-              videoOverlay += '<video id="video-'+i+'" class="video-js vjs-sublime-skin vjs-big-play-centered"';
+              videoOverlay += '<video preload="none" id="video-'+i+'" class="video-js vjs-sublime-skin vjs-big-play-centered"';
               videoOverlay += 'poster="' +thUrl+'" src="' + videoObj + '"></video>';
               videoOverlay += '</div>';
             }
-        containerGrid.html(thumbGrid+ "</div>");
-        containerGrid.imagesLoaded().progress(onProgress);
-        containerVideo.html(videoOverlay+ "</div>");
+        containerGrid.append(thumbGrid+ "</div>").imagesLoaded().progress(onProgress);
+        containerVideo.append(videoOverlay+ "</div>");
     }
     ajaxCall().then(function(returndata){
       $('.loader').fadeOut();
       $('.wrap').fadeIn();
+      $(window).scroll(function() {
+        var scrolled = $(window).scrollTop();
+        if ( scrolled >= 10 ){
+            $('header').addClass('scrolled');
+            $('#trigger-overlay').addClass('white');
+        } else {
+            $('header').removeClass('scrolled');
+            $('#trigger-overlay').removeClass('white');
+        }
+      });
       // Check if work landing page
       var landing = $.inArray( "recent", window.location.pathname.split( '/' ));
       if (landing == -1) {
@@ -84,7 +83,6 @@
               var myPlayer = videojs("video-"+index, {
                   "controls": true,
                   "autoplay": false,
-                  "preload": "metadata",
                   "height":360,
                   "width": 640
               });
@@ -94,7 +92,8 @@
             var slider = $('.videoSlider').royalSlider({
               addActiveClass: true,
               controlNavigation : 'none',
-              arrowsNav : false,
+              arrowsNav : true,
+              arrowsNavAutoHide : false,
               loop: true,
               fadeinLoadedSlide:false,
               globalCaption: true,
@@ -120,7 +119,7 @@
               current = slider.currSlideId;
               videojs("video-"+current).ready(function(){
               var myPlayer = this;
-                  myPlayer.pause();
+                  myPlayer.pause().currentTime(0);
               });
             });
             slider.ev.on('rsAfterSlideChange', function(event) {
@@ -129,12 +128,6 @@
               var myPlayer = this;
                   myPlayer.play();
               });
-            });
-            $('#slider-next').click(function() {
-              slider.next();
-            });
-            $('#slider-prev').click(function() {
-              slider.prev();
             });
           },
         }).trigger('click');
@@ -155,7 +148,6 @@
               var player = videojs("video-"+index, {
                   "controls": true,
                   "autoplay": false,
-                  "preload": "metadata",
                   "height":360,
                   "width": 640
                 });
@@ -165,7 +157,8 @@
             var slider = $('.videoSlider').royalSlider({
               addActiveClass: true,
               controlNavigation : 'none',
-              arrowsNav : false,
+              arrowsNav : true,
+              arrowsNavAutoHide : false,
               loop: true,
               fadeinLoadedSlide:false,
               globalCaption: true,
@@ -182,25 +175,17 @@
               },
             }).data('royalSlider');
             slider.goTo(index);
-            $('#slider-next').click(function() {
-              next = slider.currSlideId;
-              slider.goTo(next);
-              console.log(next);
-            });
-            $('#slider-prev').click(function() {
-              prev = slider.currSlideId;
-              slider.goTo(prev);
-              console.log(prev);
-            });
             videojs("video-"+index).ready(function(){
               var myPlayer = this;
+              setTimeout(function(){
                   myPlayer.play();
+              }, index*100 );
             });
             slider.ev.on('rsBeforeMove', function(event) {
               current = slider.currSlideId;
               videojs("video-"+current).ready(function(){
               var myPlayer = this;
-                  myPlayer.pause();
+                  myPlayer.pause().currentTime(0);
               });
             });
             slider.ev.on('rsAfterSlideChange', function(event) {

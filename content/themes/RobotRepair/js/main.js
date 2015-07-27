@@ -25,13 +25,6 @@
 					enabled: true,
 				},
 			}).data('royalSlider');
-			$('.block figure').bind('mouseenter',function(e) {
-				e.preventDefault();
-				slider.toggleAutoPlay();
-			}).bind('mouseleave',function(e) {
-				e.preventDefault();
-				slider.toggleAutoPlay();
-			});
 		});
 		$('article.friend').click(function(e) {
 			e.preventDefault();

@@ -3,7 +3,9 @@
 {% block content %}
 	<section id="collaborator" role="main" class="wrap">
 		 <div class="row">
-		 	{% for item in post.get_field('collaborator')  %}
+		 	{% set counter = 0 %}
+		 	{% for item in post.get_field('collaborator') %}
+		 		{% set counter = counter + 0 %}
 	            <article class="friend"> 
                     <figure>
                     	{% if item.collaborator_image %}
@@ -25,9 +27,10 @@
 				        			<h4>{{ item.collaborator_name }}</h4>
 				        			<div class="friend-tracks">
 				        				{% for tracks in item.collaborator_rep %}
-				        					<div id="jplayer-audio-{{ loop.index }}" class="jp-jplayer" data-url="{{tracks.collaborator_tracks}}"></div>
+				        					{% set counter = counter + 1 %}
+											<div id="jplayer-audio-{{ counter }}" class="jp-jplayer" data-url="{{tracks.collaborator_tracks}}"></div>
 
-							                <div id="jp-container-audio-{{ loop.index }}" class="jp-flat-audio collab" role="application" aria-label="media player">
+							                <div id="jp-container-audio-{{ counter }}" class="jp-flat-audio collab" role="application" aria-label="media player">
 							                    <div class="jp-play-control jp-control">
 							                        <button class="jp-play jp-button" role="button" aria-label="play" tabindex="0"></button>
 							                    </div>
@@ -36,14 +39,14 @@
 							                        Media Player Error<br />
 							                        Update your browser or Flash plugin
 							                    </div>
-							                </div>
+							                </div> 
 										{% endfor %}
 				        			</div>
 				        		</div>
 				        		<div class="friend-desc">
 				            		<p>{{ item.collaborator_bio }}</p> 
 				            		{% if item.collaborator_link %}
-				            			<a href="{{ item.collaborator_link }}" target="_blank">Link</a> 
+				            			<button onclick="window.open('{{ item.collaborator_link }}')">Link</button>
 				            		{% endif %}
 				            	</div>
 				            </div>     

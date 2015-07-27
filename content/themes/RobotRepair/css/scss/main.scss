@@ -15,6 +15,7 @@ header {
 	padding:24px 0 0;
 	z-index:12;
 	@include transition(padding 0.5s ease);
+	@include transform(translateZ(0));
 	.topnav {
 		@include outer-container;
 		padding:0 22px 30px;
@@ -207,6 +208,7 @@ section {
 					  text-align:center;
 					  top: 0;
 					  width: 100%;
+					  z-index:11;
 					  figcaption {
 						  max-width: 90%;
 						  display: inline-block;
@@ -290,8 +292,7 @@ section {
 					}
 					.friend-wrap{
 						height:450px;
-						cursor: pointer;
-						z-index:99;
+						z-index:100;
 						img {
 							width:49%;
 							height:auto;
@@ -326,13 +327,13 @@ section {
 								text-align: left;
 								margin-bottom: 0
 							}
-							a {
-								display: block;
-								text-align: right;
-								padding-right:1em;
-								text-decoration: none;
-								color: $colored;
-								line-height: 1;
+							button {
+								background-color: #008CB4;
+								border:none;
+								float:right;
+								margin-right:1em;
+								color:#fff;
+								padding:.3em .7em
 							}
 						}
 					}
@@ -526,33 +527,42 @@ $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
 	@include media($mobile) {
 		max-width: 110px;
 		margin-left: -55px;
+		margin-top: -30px;
 	}
 }
-#slider-next, #slider-prev {
-	width:36px;
-	height:36px;
-	background:transparent;
-	background-position:center center;
-	background-repeat:no-repeat;
-	position: absolute;
-	cursor:pointer;
-  	top: 50%;
-  	margin-top:-38px;
-  	opacity: .6;
-  	@include media($mobile) {
-  		top:100%
-  	}
+.videoSlider .rsArrow {
+    height: 100%;
+    width: 44px;
+    position: absolute;
+    display: block;
+    cursor: pointer;
+    z-index: 21;
 }
-#slider-next {
-	background-image: url('../img/next.png');
-	right:18px;
+.videoSlider.rsHor .rsArrowLeft {
+    left: 0;
+    top: 0;
 }
-#slider-prev {
+.videoSlider.rsHor .rsArrowRight {
+    right: 0;
+    top: 0;
+}
+.videoSlider .rsArrowIcn {
+    width: 36px;
+    height: 36px;
+    top: 50%;
+    left: 50%;
+    margin-top: -18px;
+    margin-left: -18px;
+    position: absolute;
+    cursor: pointer;
+}
+.videoSlider.rsHor .rsArrowLeft .rsArrowIcn{
 	background: url('../img/prev.png');
 	left:18px
 }
-#slider-next:hover, #slider-prev:hover {
-	opacity: 1
+.videoSlider.rsHor .rsArrowRight .rsArrowIcn{
+	background-image: url('../img/next.png');
+	right:18px;
 }
 .videoSlider {
 	height:360px;
@@ -635,6 +645,7 @@ figure h2,{
 	font-size:em(18);
 	letter-spacing:em(1);
 }
+
 .cssanimations figure h5,
 .cssanimations figure h2 {
 	opacity: 0;

@@ -100,8 +100,8 @@
 .fancybox-close {
 	background: url('../img/cross.png') center center no-repeat;
 	display:block;
-	position: absolute;
-	top: -95px;
+	position: fixed;
+	top: 26px;
 	right: 26px;
 	width: 30px;
 	height: 30px;
