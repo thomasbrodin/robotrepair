@@ -173,7 +173,8 @@ section {
 	&#home {
 	  min-height: 700px;
 	  @include media($mobile) {
-		padding-top:60px
+		padding-top:60px;
+		min-height: 465px;
 	  }
 	}
 	&#best-tracks {

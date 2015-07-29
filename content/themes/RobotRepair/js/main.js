@@ -6,7 +6,7 @@
 		$(window).on('resize',resize);
 		resize();
 		function resize(){
-			windowHeight = Math.max($(window).height(),480);
+			windowHeight = $(window).height();
 			diffH = (windowHeight-headerHeight);
 			paddingFooter = 50;
 			gridHeight.css({ height: (diffH - paddingFooter)});
