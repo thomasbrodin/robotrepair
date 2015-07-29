@@ -120,7 +120,13 @@
 		width: 40px;
 	}
 }
-
+.collab .jp-flat-audio .jp-button:before,
+.collab .jp-flat-audio .jp-button {
+	@include media($smallscreen) {
+		width: 30px;
+		line-height:30px;
+	}
+}
 .jp-flat-audio.jp-state-playing .jp-play:before {
 	content: '\2016';
 }

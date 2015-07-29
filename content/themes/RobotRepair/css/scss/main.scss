@@ -16,12 +16,21 @@ header {
 	z-index:12;
 	@include transition(padding 0.5s ease);
 	@include transform(translateZ(0));
+	@include media($mobile) {
+		padding-top:12px
+	}
 	.topnav {
 		@include outer-container;
 		padding:0 22px 30px;
+		@include media($mobile) {
+			padding:0 12px 15px;
+		}
 		h1 {
 		    float: left;
 		    font-size: em(26);
+		    @include media($mobile) {
+		    	font-size: em(20);
+		    }
 		    a {
 		    	@include media($mobile) {
 		    		display: block
@@ -57,16 +66,23 @@ header {
 		  	@include outer-container;
 		  	display: block;
 		  	padding:0 22px;
+		  	@include media($mobile) {
+				padding:0 12px;
+			}
 		  	&.work {
 		  		li {
 		  			display: inline-block;
 		  			list-style: none;
 		  			padding:8px 0 3px;
+		  			line-height: 1;
 			  		a {
 			  			font-family: $font-stack;
 			  			text-transform: uppercase;
 			  			color:grey;
 			  			padding-right:15px;
+			  			@include media($mobile) {
+			  				padding-right:10px;
+			  			}
 			  		}
 			  	}
 			}
@@ -146,14 +162,17 @@ body.home span.title {
 
 section { 
 	padding-top:80px;
-	@include media($mobile) {
-		padding-top:104px
-	}
 	&#feed{
-		padding:178px 0 80px
+		padding:178px 0 80px;
+		@include media($mobile) {
+			padding-top:170px
+		}
 	}
 	&#home {
 	  min-height: 700px;
+	  @include media($mobile) {
+		padding-top:60px
+	  }
 	}
 	&#best-tracks {
 	  min-height: 700px;
@@ -161,7 +180,12 @@ section {
 	  display: none
 	}
 	&#info {
-	  padding-bottom:100px
+	  padding-bottom:100px;
+	  @include media($mobile) {
+		padding-left:12px;
+		padding-right:12px;
+		padding-bottom:60px;
+	  }
 	}
 	&.wrap {
 		@include outer-container;
@@ -293,6 +317,9 @@ section {
 					.friend-wrap{
 						height:450px;
 						z-index:100;
+						@include media($mobile) {
+							height:auto;
+						}
 						img {
 							width:49%;
 							height:auto;
@@ -309,9 +336,16 @@ section {
 								line-height: 1.1;
 								text-align: left;
 								padding:2em 1em;
+								@include media($mobile) {
+									font-size: em(16);
+									padding:.7em .7em;
+								}
 							}
 							.friend-tracks{
  								padding: 0 1.2em;
+ 								@include media($mobile) {
+ 									padding:0 .7em;
+ 								}
  							}
 						}
 						.friend-desc {			
@@ -319,6 +353,9 @@ section {
 							width:100%;
 							height:50%;
 							background-color:#75c1db;
+							@include media($mobile) {
+								padding-bottom:12px
+							}
 							p {
 								font-size:em(14);
 								color:$colored;
@@ -357,6 +394,10 @@ section {
 		    }
 		    .la{
 		    	@include span-columns(8);
+		    	@include media($mobile) {
+		    		@include span-columns(1);
+		    		margin-bottom: 24px;
+				}
 		    	strong {
 		    		line-height: 1.5;
 		    	}
@@ -369,6 +410,9 @@ section {
 		    }
 		    .ny {
 		    	@include span-columns(7);
+		    	@include media($mobile) {
+		    		@include span-columns(1);
+		    	}
 		    	text-align:right;
 		    	strong {
 		    		line-height: 1.5;

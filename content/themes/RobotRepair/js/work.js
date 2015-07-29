@@ -111,21 +111,27 @@
             }).data('royalSlider');
             videojs("video-0").ready(function(){
               var myPlayer = this;
-                setTimeout(function(){
-                    myPlayer.play();
-                }, 100);
+                 myPlayer.pause().currentTime(0);
+                myPlayer.play();
             });
             slider.ev.on('rsBeforeMove', function(event) {
               current = slider.currSlideId;
               videojs("video-"+current).ready(function(){
               var myPlayer = this;
-                  myPlayer.pause().currentTime(0);
+                  myPlayer.pause();
+                  // this hack clears up any pending socket issues. damn it chrome.
+                  if(window.stop !== undefined) {
+                  window.stop();
+                  } else if(document.execCommand !== undefined) {
+                      document.execCommand("Stop", false);
+                  }
               });
             });
             slider.ev.on('rsAfterSlideChange', function(event) {
               current = slider.currSlideId;
               videojs("video-"+current).ready(function(){
               var myPlayer = this;
+                  myPlayer.pause().currentTime(0);
                   myPlayer.play();
               });
             });
@@ -175,23 +181,31 @@
               },
             }).data('royalSlider');
             slider.goTo(index);
-            videojs("video-"+index).ready(function(){
-              var myPlayer = this;
-              setTimeout(function(){
-                  myPlayer.play();
-              }, index*100 );
-            });
+            if (index === 0 ) {
+              videojs("video-0").ready(function(){
+                var myPlayer = this;
+                myPlayer.pause().currentTime(0);
+                myPlayer.play();
+              });
+            }
             slider.ev.on('rsBeforeMove', function(event) {
               current = slider.currSlideId;
               videojs("video-"+current).ready(function(){
-              var myPlayer = this;
-                  myPlayer.pause().currentTime(0);
+                var myPlayer = this;
+                myPlayer.pause();
+                // this hack clears up any pending socket issues. damn it chrome.
+                if(window.stop !== undefined) {
+                  window.stop();
+                } else if(document.execCommand !== undefined) {
+                    document.execCommand("Stop", false);
+                }
               });
             });
             slider.ev.on('rsAfterSlideChange', function(event) {
               current = slider.currSlideId;
               videojs("video-"+current).ready(function(){
               var myPlayer = this;
+                  myPlayer.pause().currentTime(0);
                   myPlayer.play();
               });
             });
