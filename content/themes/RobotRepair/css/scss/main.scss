@@ -149,7 +149,9 @@ body.home span.title {
 				padding:7px 14px 0 0;
 				font-size:em(18);
 				@include media($mobile) {
-					font-size:em(14);
+					font-size:em(12);
+					text-align:center;
+					padding:7px 0 0 0 
 				}
 			}
 		}
