@@ -502,7 +502,7 @@ section {
    			height:60px;
    			width:100%;
    			background:white;
-   			z-index:999;
+   			z-index:11;
    			.inner {
    				@include outer-container;
    			}
@@ -579,11 +579,14 @@ $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
 }
 .videoSlider .rsArrow {
     height: 100%;
-    width: 44px;
+    width: 20%;
     position: absolute;
     display: block;
     cursor: pointer;
     z-index: 21;
+    @include media($mobile) {
+    	width: 36px;
+    }
 }
 .videoSlider.rsHor .rsArrowLeft {
     left: 0;
@@ -597,19 +600,19 @@ $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
     width: 36px;
     height: 36px;
     top: 50%;
-    left: 50%;
+    left: 90%;
     margin-top: -18px;
-    margin-left: -18px;
+    margin-left: -36px;
     position: absolute;
     cursor: pointer;
 }
 .videoSlider.rsHor .rsArrowLeft .rsArrowIcn{
 	background: url('../img/prev.png');
-	left:18px
+	margin-left:20px;
+	left:0;
 }
 .videoSlider.rsHor .rsArrowRight .rsArrowIcn{
 	background-image: url('../img/next.png');
-	right:18px;
 }
 .videoSlider {
 	height:360px;
