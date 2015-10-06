@@ -2,120 +2,119 @@
 
 {% block content %}
 	<section id="home" class="wrap">
-        <div class="row">
-            <div class="block large">
-              <figure>
-                <a href="{{post.get_field('link_to_1')}}">
-                    <div class="slider">
-                    	{% set work = post.get_field('work-slides') %}
-                		{% for image in work %}
-                            <div data-rsDelay="{{post.get_field('speed_slideshow_1')}}">
-                    		  <img class="rsImg" src="{{TimberImage(image.id).get_src|resize(640, 360, 'center')}}" alt="{{image.title}}">
-                            </div>
-                    	{% endfor %}
-                    </div>
-                    <div class="caption">
-                        <figcaption>
-                            <h2>{{post.get_field('title_1')}}</h2>
-                        </figcaption>  
-                    </div>
-                </a>
-              </figure>
-            </div>
-            <div class="block">
-                <div class="y-two">
-                   <figure>
-                        <a href="{{post.get_field('link_to_2')}}">
-                            <div class="slider">  
-                             {% set contact = post.get_field('contact_slides') %}  
-                               {% for image in contact %}
-                                    <div data-rsDelay="{{post.get_field('speed_slideshow_2')}}">
-                            		  <img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
-                                    </div>
-                            	{% endfor %}       
-                            </div>
-                            <div class="caption">
-                                <figcaption>
-                                    <h2>{{post.get_field('title_2')}}</h2>
-                                </figcaption>  
-                            </div>
-                        </a>
-                    </figure>
-                </div>
-                <div class="y-two">
-                   <figure>
-                        <a href="{{post.get_field('link_to_3')}}">
-                            <div class="slider">
-                            	{% set tracks = post.get_field('top_tracks_slides') %}  
-                              	{% for image in tracks %}
-                                    <div data-rsDelay="{{post.get_field('speed_slideshow_3')}}">
-                            		  <img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
-                                    </div>
-                            	{% endfor %}
-                            </div>
-                            <div class="caption">
-                                <figcaption>
-                                    <h2>{{post.get_field('title_3')}}</h2>
-                                </figcaption>  
-                            </div>
-                        </a>
-                    </figure>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="block">
-                <div class="y-two">
-                   <figure>
-                        <a href="{{post.get_field('link_to_4')}}">
-                            <div class="slider">
-                            	{% set colla = post.get_field('collaborators_slides') %}  
-                                {% for image in colla %}
-                                    <div data-rsDelay="{{post.get_field('speed_slideshow_4')}}">
-                            		  <img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
-                                    </div>
-                            	{% endfor %}
-                            </div>
-                            <div class="caption">
-                                <figcaption>
-                                    <h2>{{post.get_field('title_4')}}</h2>
-                                </figcaption>  
-                            </div>
-                        </a>
-                    </figure>
-                </div>
-                <div class="y-two">
-                    <figure>
-                        <a href="{{post.get_field('external_link_1')}}">
-                            <div class="slider">
-                            	{% set blog = post.get_field('blog_slides') %}
-                               {% for image in blog %}
-                                    <div data-rsDelay="{{post.get_field('speed_slideshow_5')}}">
-                            		  <img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
-                                    </div>
-                            	{% endfor %}
-                            </div>
-                            <div class="caption">
-                                <figcaption>
-                                    <h2>{{post.get_field('title_5')}}</h2>
-                                </figcaption>  
-                            </div>
-                        </a>
-                    </figure>
-                </div>
-            </div>
-            <div class="block large">
-                <a href="{{post.get_field('external_link_2')}}" target="_blank">
-	                <div class="slider">  
-	                	{% set last = post.get_field('large_slides') %}           
-	                      	{% for image in last %}
-                                <div data-rsDelay="{{post.get_field('speed_slideshow_6')}}">
-	                    		     <img class="rsImg" src="{{TimberImage(image.id).get_src|resize(640, 360, 'center')}}" alt="{{image.title}}">
-                                </div>
-	                    	{% endfor %}
-	                </div>
-                </a>
-            </div>
-        </div>
-    </section>
+				<div class="row">
+						<div class="block large">
+							<figure>
+								<a href="{{post.get_field('link_to_1')}}">
+										<div class="slider">
+											{% set work = post.get_field('work-slides') %}
+										{% for image in work %}
+														<div data-rsDelay="{{post.get_field('speed_slideshow_1')}}">
+													<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(640, 360, 'center')}}" alt="{{image.title}}">
+														</div>
+											{% endfor %}
+										</div>
+										<div class="caption">
+												<figcaption>
+														<h2>{{post.get_field('title_1')}}</h2>
+												</figcaption>
+										</div>
+								</a>
+							</figure>
+						</div>
+						<div class="block">
+								<div class="y-two">
+									 <figure>
+												<a href="{{post.get_field('link_to_2')}}">
+														<div class="slider">
+														 {% set contact = post.get_field('contact_slides') %}
+															 {% for image in contact %}
+																		<div data-rsDelay="{{post.get_field('speed_slideshow_2')}}">
+																	<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
+																		</div>
+															{% endfor %}
+														</div>
+														<div class="caption">
+																<figcaption>
+																		<h2>{{post.get_field('title_2')}}</h2>
+																</figcaption>
+														</div>
+												</a>
+										</figure>
+								</div>
+								<div class="y-two">
+									 <figure>
+												<a href="{{post.get_field('link_to_3')}}">
+														<div class="slider">
+															{% set tracks = post.get_field('top_tracks_slides') %}
+																{% for image in tracks %}
+																		<div data-rsDelay="{{post.get_field('speed_slideshow_3')}}">
+																	<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
+																		</div>
+															{% endfor %}
+														</div>
+														<div class="caption">
+																<figcaption>
+																		<h2>{{post.get_field('title_3')}}</h2>
+																</figcaption>
+														</div>
+												</a>
+										</figure>
+								</div>
+						</div>
+				</div>
+				<div class="row">
+						<div class="block">
+								<div class="y-two">
+									 <figure>
+												<a href="{{post.get_field('link_to_4')}}">
+														<div class="slider">
+															{% set colla = post.get_field('collaborators_slides') %}
+																{% for image in colla %}
+																		<div data-rsDelay="{{post.get_field('speed_slideshow_4')}}">
+																	<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
+																		</div>
+															{% endfor %}
+														</div>
+														<div class="caption">
+																<figcaption>
+																		<h2>{{post.get_field('title_4')}}</h2>
+																</figcaption>
+														</div>
+												</a>
+										</figure>
+								</div>
+								<div class="y-two">
+										<figure>
+												<a href="{{post.get_field('external_link_1')}}">
+														<div class="slider">
+															{% set blog = post.get_field('blog_slides') %}
+															 {% for image in blog %}
+																		<div data-rsDelay="{{post.get_field('speed_slideshow_5')}}">
+																	<img class="rsImg" src="{{TimberImage(image.id).get_src|resize(320, 180, 'center')}}" alt="{{image.title}}">
+																		</div>
+															{% endfor %}
+														</div>
+														<div class="caption">
+																<figcaption>
+																		<h2>{{post.get_field('title_5')}}</h2>
+																</figcaption>
+														</div>
+												</a>
+										</figure>
+								</div>
+						</div>
+						<div class="block large captioned">
+							<div class="slider">
+								{% for item in post.get_field('rep')  %}
+									<a href="{{item.external_link_2}}" target="_blank">
+										<div data-rsDelay="{{post.get_field('speed_slideshow_6')}}">
+											<img class="rsImg" src="{{TimberImage(item.slides_img).get_src|resize(640, 360, 'center')}}" alt="{{item.slides_caption}}">
+										</div>
+									</a>
+								{% endfor %}
+							</div>
+						</div>
+				</div>
+		</section>
 {% endblock %}

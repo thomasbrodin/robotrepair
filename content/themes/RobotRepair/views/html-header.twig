@@ -4,20 +4,15 @@
 <!--[if IE 8]><html class="no-js ie ie8 lt-ie9" {{site.language_attributes}}> <![endif]-->
 <!--[if gt IE 8]><!--><html class="no-js" {{site.language_attributes}}> <!--<![endif]-->
 <head>
-    <meta charset="{{site.charset}}" />
-        <title>   
-            {% if wp_title %}
-                {{ wp_title }} - {{ site.name }}
-            {% else %}
-                {{ site.name }}
-            {% endif %}
-        </title>
-    <meta name="description" content="{{site.description}}">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" href="{{theme.uri}}/img/apple-touch-icon.png">
-    <link rel="icon" href="{{theme.uri}}/favicon.ico">
-    <script src="//use.typekit.net/oqf3pmp.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
-    {{function('wp_head')}}
+		<meta charset="{{site.charset}}" />
+				<title>{% if wp_title %}{{ wp_title }} - {{ site.name }}{% else %}{{ site.name }}{% endif %}
+				</title>
+		<meta name="description" content="{{site.description}}">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="apple-touch-icon" href="{{theme.uri}}/img/apple-touch-icon.png">
+		<link rel="icon" href="{{theme.uri}}/favicon.ico">
+		<script src="//use.typekit.net/oqf3pmp.js"></script>
+		<script>try{Typekit.load();}catch(e){}</script>
+		{{function('wp_head')}}

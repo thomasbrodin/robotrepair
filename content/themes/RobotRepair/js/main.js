@@ -18,6 +18,7 @@
 			var slider = $('.slider').royalSlider({
 				controlNavigation : 'none',
 				arrowsNav : false,
+				globalCaption:true,
 				transitionType : 'fade',
 				imageScalePadding : 0,
 				imageScaleMode:'fill',
@@ -32,11 +33,11 @@
 			$('.grow').removeClass('open');
 			$(this).children("figure").addClass('hide');
 			$(this).children(".grow").addClass('open');
-        });
-        $('.grow').mouseleave(function() {
+				});
+				$('.grow').mouseleave(function() {
 			$(this).removeClass('open');
 			$('figure').removeClass('hide');
-        });
+				});
 		$(window).scroll(function() {
 			var scrolled = Math.max(0, $(window).scrollTop());
 			if ( scrolled >= 10 ){

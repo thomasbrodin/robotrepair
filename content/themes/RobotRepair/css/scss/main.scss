@@ -26,26 +26,26 @@ header {
 			padding:0 12px 15px;
 		}
 		h1 {
-		    float: left;
-		    font-size: em(26);
-		    @include media($mobile) {
-		    	font-size: em(20);
-		    }
-		    a {
-		    	@include media($mobile) {
-		    		display: block
-		    	}
-		    }
-		    span {
-		    	color:$colored;
-		    	padding-left:.5em;
-		    	@include media($mobile) {
-		    		padding-left:0
-		    	}
-		    }
+				float: left;
+				font-size: em(26);
+				@include media($mobile) {
+					font-size: em(20);
+				}
+				a {
+					@include media($mobile) {
+						display: block
+					}
+				}
+				span {
+					color:$colored;
+					padding-left:.5em;
+					@include media($mobile) {
+						padding-left:0
+					}
+				}
 		}
 		.menu {
-		    float: right;
+				float: right;
 		}
 	}
 	&.scrolled {
@@ -55,62 +55,62 @@ header {
 			padding-bottom:15px;
 		}
 		h1 {
-	    	a { color:#fff!important;}
-		    span {color:#ccc;}
+				a { color:#fff!important;}
+				span {color:#ccc;}
 		}
 	}
 	.subnav{
-	  width: 100%;
-	  background: #ccc;
-	  	ul {
-		  	@include outer-container;
-		  	display: block;
-		  	padding:0 22px;
-		  	@include media($mobile) {
+		width: 100%;
+		background: #ccc;
+			ul {
+				@include outer-container;
+				display: block;
+				padding:0 22px;
+				@include media($mobile) {
 				padding:0 12px;
 			}
-		  	&.work {
-		  		li {
-		  			display: inline-block;
-		  			list-style: none;
-		  			padding:8px 0 3px;
-		  			line-height: 1;
-			  		a {
-			  			font-family: $font-stack;
-			  			text-transform: uppercase;
-			  			color:grey;
-			  			padding-right:15px;
-			  			@include media($mobile) {
-			  				padding-right:10px;
-			  			}
-			  		}
-			  	}
+				&.work {
+					li {
+						display: inline-block;
+						list-style: none;
+						padding:8px 0 3px;
+						line-height: 1;
+						a {
+							font-family: $font-stack;
+							text-transform: uppercase;
+							color:grey;
+							padding-right:15px;
+							@include media($mobile) {
+								padding-right:10px;
+							}
+						}
+					}
 			}
-		  	&.work-sub {
+				&.work-sub {
 				li {
 					display: inline-block;
-		  			list-style: none;
+						list-style: none;
 					padding:3px 0 8px;
 					a {
-			  			font-family: $font-stack;
-			  			color:grey;
-			  			padding-right:12px;
-			  			text-transform: uppercase;
+							font-family: $font-stack;
+							color:grey;
+							padding-right:12px;
+							text-transform: uppercase;
 						font-size:em(12)
-			  		}
+						}
 				}
-		  	}
-	  	}
+				}
+			}
 	}
-} 
+}
 header.scrolled .subnav ul.work-sub li {
-	  padding: 0 0 3px;
+		padding: 0 0 3px;
 }
 header.scrolled .subnav ul.work li{
 	line-height:1
 }
-body.home span.title {
-	display:none
+body.admin-bar header {
+	padding-top:56px
 }
 #brand-platform .inner {
 	@include outer-container;
@@ -134,9 +134,9 @@ body.home span.title {
 			img {
 				max-width: 150px;
 				float: right;
-	  			padding-right: 18px;
-	  			@include transition(all, 0.7s, ease-out);
-	  			@include media($mobile) {
+					padding-right: 18px;
+					@include transition(all, 0.7s, ease-out);
+					@include media($mobile) {
 					max-width: 75px;
 				}
 			}
@@ -146,12 +146,12 @@ body.home span.title {
 				clear:both;
 				color:#fff;
 				text-align: right;
-				padding:7px 14px 0 0;
+				padding:10px 20px 0 0;
 				font-size:em(18);
 				@include media($mobile) {
 					font-size:em(12);
 					text-align:center;
-					padding:7px 0 0 0 
+					padding:7px 0 0 0
 				}
 			}
 		}
@@ -162,7 +162,7 @@ body.home span.title {
 	@include transform(scale(1));
 }
 
-section { 
+section {
 	padding-top:80px;
 	&#feed{
 		padding:178px 0 80px;
@@ -171,24 +171,24 @@ section {
 		}
 	}
 	&#home {
-	  min-height: 700px;
-	  @include media($mobile) {
+		min-height: 700px;
+		@include media($mobile) {
 		padding-top:60px;
 		min-height: 465px;
-	  }
+		}
 	}
 	&#best-tracks {
-	  min-height: 700px;
-	  padding-bottom:60px;
-	  display: none
+		min-height: 700px;
+		padding-bottom:60px;
+		display: none
 	}
 	&#info {
-	  padding-bottom:100px;
-	  @include media($mobile) {
+		padding-bottom:100px;
+		@include media($mobile) {
 		padding-left:12px;
 		padding-right:12px;
 		padding-bottom:60px;
-	  }
+		}
 	}
 	&.wrap {
 		@include outer-container;
@@ -197,66 +197,66 @@ section {
 		position:relative;
 		display: none;
 		.row {
-		  	@include row();
-		  	height: 15em;
+				@include row();
+				height: 15em;
 			height: calc(100% / 2);
 			position:relative;
 			/* home Thumbnails */
-		  	.block {
-		  		height:100%;
-		  		position:relative;
-		  		background-color: $colored;
-	    		@include span-columns(5, block-collapse);
-	    		&.large {
-		  			@include span-columns(10, block-collapse);
-		  			h2{
-		  				font-size: em(42);
-		  			}
-		  		}
-			  	.y-two {
-		  			height: 50%;
-		  		}
-		  		figure {
-	  				position:relative;
-	  				margin: 0 auto;
-				  	height: 100%;
-				  	overflow: hidden;
-				  	cursor: pointer;
-				  	.caption:before {
-					  content: "";
-					  display: inline-block;
-					  height: 100%;
-					  text-align: center;
-					  vertical-align: middle;
+				.block {
+					height:100%;
+					position:relative;
+					background-color: $colored;
+					@include span-columns(5, block-collapse);
+					&.large {
+						@include span-columns(10, block-collapse);
+						h2{
+							font-size: em(42);
+						}
+					}
+					.y-two {
+						height: 50%;
+					}
+					figure {
+						position:relative;
+						margin: 0 auto;
+						height: 100%;
+						overflow: hidden;
+						cursor: pointer;
+						.caption:before {
+						content: "";
+						display: inline-block;
+						height: 100%;
+						text-align: center;
+						vertical-align: middle;
 					}
 					.caption {
-					  height: 100%;
-					  position: absolute;
-					  text-align:center;
-					  top: 0;
-					  width: 100%;
-					  z-index:11;
-					  figcaption {
-						  max-width: 90%;
-						  display: inline-block;
-						  vertical-align: middle;
+						height: 100%;
+						position: absolute;
+						text-align:center;
+						top: 0;
+						width: 100%;
+						z-index:11;
+						figcaption {
+							max-width: 90%;
+							display: inline-block;
+							vertical-align: middle;
 						 @include backface-visibility(hidden);
-					  }
+						}
 					}
 					a:hover {
 						color:$colored
 					}
-	  			}
-		    }
-		    /* Collaborator Thumbnails */
-		    .friend {
-		    	margin-bottom: 20px;
-		    	@include media(930px, 12) {
-		    		@include span-columns(3);
-		    		@include omega(4n);
-		    	}
-		    	@include media($smallscreen) {
-		    		@include omega(2n);
+					}
+				}
+				/* Collaborator Thumbnails */
+				.friend {
+					margin-bottom: 20px;
+					@include media(930px, 12) {
+						@include span-columns(3);
+						@include omega(4n);
+					}
+					@include media($smallscreen) {
+						@include omega(2n);
 					@include span-columns(2);
 				}
 				@include media($mobile) {
@@ -287,16 +287,16 @@ section {
 					}
 				}
 				/* Grow on CLick */
-			    .grow { 
-			    	background-color:$colored;
-			    	opacity: 0;
-			    	@include transform-origin(0 0);
-			    	@include media(930px, 12) {
-			    		@include span-columns(6);
-			    		@include omega(4n);
-			    	}
-			    	@include media($smallscreen) {
-			    		@include omega(2n);
+					.grow {
+						background-color:$colored;
+						opacity: 0;
+						@include transform-origin(0 0);
+						@include media(930px, 12) {
+							@include span-columns(6);
+							@include omega(4n);
+						}
+						@include media($smallscreen) {
+							@include omega(2n);
 						@include span-columns(4);
 						opacity: 1;
 						position:relative;
@@ -305,7 +305,7 @@ section {
 						@include span-columns(1);
 						opacity: 1
 					}
-					@include transition(all .7s ease-out); 
+					@include transition(all .7s ease-out);
 					position:absolute;
 					&.open {
 						@include animation-name(blockOpen);
@@ -328,7 +328,7 @@ section {
 							height:auto;
 							float:left
 						}
-						.friend-header {				
+						.friend-header {
 							float:left;
 							height:50%;
 							width:50%;
@@ -345,13 +345,13 @@ section {
 								}
 							}
 							.friend-tracks{
- 								padding: 0 1.2em;
- 								@include media($mobile) {
- 									padding:0 .7em;
- 								}
- 							}
+								 padding: 0 1.2em;
+								 @include media($mobile) {
+									 padding:0 .7em;
+								 }
+							 }
 						}
-						.friend-desc {			
+						.friend-desc {
 							float:left;
 							width:100%;
 							height:50%;
@@ -380,53 +380,78 @@ section {
 				}
 				&:nth-child(4n) .grow{
 					@include transform-origin(100% 0);
-				  	@include media(930px, 12) {
-			    		@include shift(-3 of 12);
-			    	}
-			    	@include media($smallscreen) {
-			    		@include shift(0);
+						@include media(930px, 12) {
+							@include shift(-3 of 12);
+						}
+						@include media($smallscreen) {
+							@include shift(0);
 					}
 					@include media($mobile) {
 						@include shift(0);
 					}
 				}
-		    }
-		    .page-content {
-		    	@include fill-parent;
-		    	padding-bottom:60px
-		    }
-		    .la{
-		    	@include span-columns(8);
-		    	@include media($mobile) {
-		    		@include span-columns(1);
-		    		margin-bottom: 24px;
 				}
-		    	strong {
-		    		line-height: 1.5;
-		    	}
-		    	p {
-		    		margin-bottom: 8px
-		    	}
-		    	a {
-		    		margin-top: 4px
-		    	}
-		    }
-		    .ny {
-		    	@include span-columns(7);
-		    	@include media($mobile) {
-		    		@include span-columns(1);
-		    	}
-		    	text-align:right;
-		    	strong {
-		    		line-height: 1.5;
-		    	}
-		    	p {
-		    		margin-bottom: 8px
-		    	}
-		    	a {
-		    		margin-top: 4px
-		    	}
-		    }
+				.page-content {
+					@include fill-parent;
+					padding-bottom:60px;
+					p {
+						text-align: justify;
+					}
+				}
+				.article-content {
+					.embed-container {
+						position: relative;
+						padding-bottom: 56.25%;
+						height: 0;
+						overflow: hidden;
+						max-width: 100%;
+						height: auto;
+					}
+					.embed-container iframe,
+					.embed-container object,
+					.embed-container embed {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+					}
+					.video-caption {
+						margin-top:1em
+					}
+				}
+				.la{
+					@include span-columns(8);
+					@include media($mobile) {
+						@include span-columns(1);
+						margin-bottom: 24px;
+				}
+					strong {
+						line-height: 1.5;
+					}
+					p {
+						margin-bottom: 8px
+					}
+					a {
+						margin-top: 4px
+					}
+				}
+				.ny {
+					@include span-columns(7);
+					@include media($mobile) {
+						@include span-columns(1);
+					}
+					text-align:right;
+					strong {
+						line-height: 1.5;
+					}
+					p {
+						margin-bottom: 8px
+					}
+					a {
+						margin-top: 4px
+					}
+				}
 		}
 		/* Work Thumbnails */
 		article {
@@ -442,17 +467,23 @@ section {
 			figure {
 				height:175px;
 				background-position: center center;
-  				background-repeat: no-repeat;
-  				background-color:#CCC;
+				background-repeat: no-repeat;
+				background-color:#CCC;
 				@include media($smallscreen) {
-					height:215px
+					height:225px
+				}
+				@include media($tablet) {
+					height:185px
 				}
 				@include media($mobile) {
 					height:100%
 				}
 				img {
-					max-width: 100%;
-					height:auto;
+					width: 100%;
+					height:100%;
+					@include media($smallscreen) {
+						height: auto;
+					}
 					@include media($mobile) {
 						width:100%;
 					}
@@ -461,7 +492,7 @@ section {
 		}
 	}
 	&.full-width{
-		.row {	
+		.row {
 			background-color:#fe32ab;
 			height:30px;
 			width:100%;
@@ -482,35 +513,35 @@ section {
 				@include media($smallscreen) {
 					height:40px;
 					width:100!important;
-			    }
-			    .track-color {
-			    	display: block;
-			    	width:100%;
-			    	height: 100%;
-			    	position:absolute;
-			    	background-color:$colored;
-			    	cursor: pointer;
-			    	z-index: 1;
-			    	@include transition(all, 0.7s, ease);
-			    }
-			}			
+					}
+					.track-color {
+						display: block;
+						width:100%;
+						height: 100%;
+						position:absolute;
+						background-color:$colored;
+						cursor: pointer;
+						z-index: 1;
+						@include transition(all, 0.7s, ease);
+					}
+			}
 		}
 		.bottom-row {
 			position:fixed;
-   			left:0px;
-   			bottom:0px;
-   			height:60px;
-   			width:100%;
-   			background:white;
-   			z-index:11;
-   			.inner {
-   				@include outer-container;
-   			}
+				 left:0px;
+				 bottom:0px;
+				 height:60px;
+				 width:100%;
+				 background:white;
+				 z-index:11;
+				 .inner {
+					 @include outer-container;
+				 }
 			a {
 				display :block;
 				float: right;
-		    	font-size: em(24);
-		    	padding:.6em 1em;
+					font-size: em(24);
+					padding:.6em 1em;
 			}
 		}
 	}
@@ -531,26 +562,26 @@ $pad-right-16 : 0 0 0 16em;
 $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
 
 @for $i from 1 through length($cycle) {
-  section.full-width .row:nth-child(#{length($cycle)}n+#{$i}) { 
-  	padding:nth($cycle, $i)
-  }
+	section.full-width .row:nth-child(#{length($cycle)}n+#{$i}) {
+		padding:nth($cycle, $i)
+	}
 }
 
 
 .loader {
 	background: url('../img/loading.gif') center center no-repeat;
 	height: 32px;
-    left: 50%;
-    margin: -16px;
-    position: absolute;
-    top: 45%;
-    width: 32px;
-    z-index: 0;
+		left: 50%;
+		margin: -16px;
+		position: absolute;
+		top: 45%;
+		width: 32px;
+		z-index: 0;
 }
 .slider {
-  width: 100%;
-  height: 100%;
-} 
+	width: 100%;
+	height: 100%;
+}
 #inline {
 	display:none;
 	width:100%
@@ -578,33 +609,33 @@ $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
 	}
 }
 .videoSlider .rsArrow {
-    height: 100%;
-    width: 20%;
-    position: absolute;
-    display: block;
-    cursor: pointer;
-    z-index: 21;
-    @include media($mobile) {
-    	width: 36px;
-    }
+		height: 100%;
+		width: 20%;
+		position: absolute;
+		display: block;
+		cursor: pointer;
+		z-index: 21;
+		@include media($mobile) {
+			width: 36px;
+		}
 }
 .videoSlider.rsHor .rsArrowLeft {
-    left: 0;
-    top: 0;
+		left: 0;
+		top: 0;
 }
 .videoSlider.rsHor .rsArrowRight {
-    right: 0;
-    top: 0;
+		right: 0;
+		top: 0;
 }
 .videoSlider .rsArrowIcn {
-    width: 36px;
-    height: 36px;
-    top: 50%;
-    left: 90%;
-    margin-top: -18px;
-    margin-left: -36px;
-    position: absolute;
-    cursor: pointer;
+		width: 36px;
+		height: 36px;
+		top: 50%;
+		left: 90%;
+		margin-top: -18px;
+		margin-left: -36px;
+		position: absolute;
+		cursor: pointer;
 }
 .videoSlider.rsHor .rsArrowLeft .rsArrowIcn{
 	background: url('../img/prev.png');
@@ -618,40 +649,47 @@ $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
 	height:360px;
 	width:100%;
 	margin:0 auto;
-  	background: #000;
-  	color: #FFF;
+		background: #000;
+		color: #FFF;
 }
 .videoSlider .rsActiveSlide {
-  opacity: 1;
+	opacity: 1;
 }
 
 .videoSlider .rsSlide {
-   -webkit-backface-visibility:hidden;
+	 -webkit-backface-visibility:hidden;
 }
 .videoSlider .rsSlide {
-  opacity: 0.45;
-  @include transition(all 0.3s ease-out);
-  @include transform(scale(0.9));
+	opacity: 0.45;
+	@include transition(all 0.3s ease-out);
+	@include transform(scale(0.9));
 }
 .videoSlider .rsActiveSlide {
-  opacity: 1;
-  @include transform(scale(1));
+	opacity: 1;
+	@include transform(scale(1));
 }
 
 .videoSlider .rsGCaption {
-  font-size: 16px;
-  line-height: 18px;
-  padding: 16px 0 0;
-  background: #000;
-  width: 100%;
-  position: static;
-  float: left;
-  left: auto;
-  bottom: auto;
-  text-align: center;
-  @include media($mobile) {
-  	font-size: 14px;
-  }
+	font-size: 16px;
+	line-height: 18px;
+	padding: 16px 0 0;
+	background: #000;
+	width: 100%;
+	position: static;
+	float: left;
+	left: auto;
+	bottom: auto;
+	text-align: center;
+	@include media($mobile) {
+		font-size: 14px;
+	}
+}
+.captioned .rsGCaption {
+	position: absolute;
+	color: #FFF;
+	text-align: left;
+	padding: .3em .5em;
+	font-size: .9em;
 }
 
 .gutted {
@@ -660,36 +698,36 @@ $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
 
 /* Animations */
 @include keyframes (blockOpen) {
-    0% {
-        opacity:0;
-        @include transform(scale(0.9));
-    }
+		0% {
+				opacity:0;
+				@include transform(scale(0.9));
+		}
 
-    100% {
-       opacity:1;
-        @include transform(scale(1));
-    }
+		100% {
+			 opacity:1;
+				@include transform(scale(1));
+		}
 }
 
 @include keyframes (captionUp) {
-    0% {
-        opacity:0;
-        @include transform(translateY(-10px));
-    }
+		0% {
+				opacity:0;
+				@include transform(translateY(-10px));
+		}
 
-    100% {
-       opacity:1;
-        @include transform(translateY(0px) rotate(0deg));
-    }
+		100% {
+			 opacity:1;
+				@include transform(translateY(0px) rotate(0deg));
+		}
 }
 /* Home Thumbnails */
 figure h5,
 figure h2,{
 	font-weight: 600;
-   	color:#fff;
-   	text-decoration: none;
-   	z-index:5;
-   	text-align: center;
+		 color:#fff;
+		 text-decoration: none;
+		 z-index:5;
+		 text-align: center;
 	width: 100%;
 	text-transform:uppercase;
 	font-size:em(18);
@@ -755,22 +793,22 @@ article	figure {
 }
 
 figure.is-loading {
-  background-image: url('../img/preloader-grey.gif');
+	background-image: url('../img/preloader-grey.gif');
 }
 figure.is-broken {
-  background-image: url('http://desandro.github.io/imagesloaded/assets/broken.png');
-  width: 320px;
+	background-image: url('http://desandro.github.io/imagesloaded/assets/broken.png');
+	width: 320px;
 }
 figure.is-loading img,
 figure.is-broken img {
-  opacity: 0;
+	opacity: 0;
 }
 .cssanimations figure h4 {
 	opacity:0
 }
 .thumbs figure:hover {
-  background-color: #111!important;
-  background-image: none!important;
+	background-color: #111!important;
+	background-image: none!important;
 }
 .thumbs figure:hover h4{
 	@include animation-name(captionUp);
@@ -782,7 +820,7 @@ figure.is-broken img {
 	@include animation-delay(0.2s);
 }
 .thumbs figure:hover img {
-    opacity: 0.2
+		opacity: 0.2
 }
 
 /* Collaborators Page */
@@ -790,13 +828,13 @@ figure.is-broken img {
 	opacity:1
 }
 .friend figure:hover {
-  background:transparent
+	background:transparent
 }
 .friend figure:hover h4{
 	opacity:1
 }
 .friend figure:hover img {
-    opacity: 0.8
+		opacity: 0.8
 }
 
 /* Info Page */
