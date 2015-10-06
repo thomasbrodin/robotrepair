@@ -115,7 +115,6 @@ function acf_get_value( $post_id, $field, $db_only = false ) {
 	$value = apply_filters( "acf/load_value/type={$field['type']}", $value, $post_id, $field );
 	$value = apply_filters( "acf/load_value/name={$field['name']}", $value, $post_id, $field );
 	$value = apply_filters( "acf/load_value/key={$field['key']}", $value, $post_id, $field );
-		
 	
 	
 	//update cache
@@ -148,6 +147,8 @@ function acf_format_value( $value, $post_id, $field ) {
 	// apply filters
 	$value = apply_filters( "acf/format_value", $value, $post_id, $field );
 	$value = apply_filters( "acf/format_value/type={$field['type']}", $value, $post_id, $field );
+	$value = apply_filters( "acf/format_value/name={$field['name']}", $value, $post_id, $field );
+	$value = apply_filters( "acf/format_value/key={$field['key']}", $value, $post_id, $field );
 	
 	
 	// return
@@ -178,10 +179,10 @@ function acf_update_value( $value = null, $post_id = 0, $field ) {
 	
 	
 	// strip slashes
-	// allow 3rd party customisation
-	if( acf_get_setting('stripslashes') )
-	{
+	if( acf_get_setting('stripslashes') ) {
+		
 		$value = stripslashes_deep($value);
+		
 	}
 	
 	
@@ -247,11 +248,19 @@ function acf_update_value( $value = null, $post_id = 0, $field ) {
 *  @return	(boolean)
 */
 
-function acf_update_option( $option = '', $value = false, $autoload = 'no' ) {
+function acf_update_option( $option = '', $value = false, $autoload = null ) {
 	
 	// vars
 	$deprecated = '';
 	$return = false;
+	
+	
+	// autoload
+	if( $autoload === null ){
+		
+		$autoload = acf_get_setting('autoload') ? 'yes' : 'no';
+		
+	}
 	
 	
 	// add or update
@@ -320,6 +329,18 @@ function acf_delete_value( $post_id = 0, $key = '' ) {
 	}
 	
 	
+	// action for 3rd party customization
+	do_action("acf/delete_value", $post_id, $key, $field);
+	
+	if( $field ) {
+		
+		do_action("acf/delete_value/type={$field['type']}", $post_id, $key, $field);
+		do_action("acf/delete_value/name={$field['_name']}", $post_id, $key, $field);
+		do_action("acf/delete_value/key={$field['key']}", $post_id, $key, $field);
+		
+	}
+	
+	
 	// post
 	if( is_numeric($post_id) ) {
 		
@@ -351,18 +372,6 @@ function acf_delete_value( $post_id = 0, $key = '' ) {
 	
 	// clear cache
 	wp_cache_delete( "load_value/post_id={$post_id}/name={$key}", 'acf' );
-	
-	
-	// action for 3rd party customization
-	do_action("acf/delete_value", $post_id, $key, $field);
-	
-	if( $field ) {
-		
-		do_action("acf/delete_value/type={$field['type']}", $post_id, $key, $field);
-		do_action("acf/delete_value/name={$field['_name']}", $post_id, $key, $field);
-		do_action("acf/delete_value/key={$field['key']}", $post_id, $key, $field);
-		
-	}
 	
 	
 	// return

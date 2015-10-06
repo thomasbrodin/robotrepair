@@ -43,14 +43,23 @@
 			
 			
 			// loop over all table layouts
-			$('.acf-input-table.table-layout').each(function(){
+			$('.acf-table').each(function(){
 				
 				// vars
-				var $table = $(this);
+				var $table = $(this),
+					$ths = $table.find('> thead th.acf-th');
+				
+				
+				// bail early if no $th
+				if( !$ths.exists() ) {
+					
+					return;
+					
+				}
 				
 				
 				// loop over th
-				$table.find('> thead th.acf-th').each(function(){
+				$ths.each(function(){
 					
 					// vars
 					var $th = $(this),
@@ -93,18 +102,17 @@
 		
 		render_table : function( $table ){
 			
-			//console.log( 'render_table %o', $table);
-			// bail early if table is row layout
-			if( $table.hasClass('row-layout') ) {
+			// vars
+			var $th = $table.find('> thead th.acf-th'),
+				available_width = 100;
 			
+			
+			// bail early if no $th
+			if( !$th.exists() ) {
+				
 				return;
 				
 			}
-			
-			
-			// vars
-			var $th = $table.find('> thead > tr > th'),
-				available_width = 100;
 			
 			
 			// clear widths
@@ -112,7 +120,7 @@
 			
 			
 			// update $th
-			$th = $th.not('.order, .remove, .hidden-by-conditional-logic');
+			$th = $th.not('.hidden-by-conditional-logic');
 			
 			
 			// set custom widths first
@@ -298,11 +306,11 @@
 			// empty?
 			if( this.count() == 0 ) {
 			
-				this.$el.addClass('empty');
+				this.$el.addClass('-empty');
 				
 			} else {
 			
-				this.$el.removeClass('empty');
+				this.$el.removeClass('-empty');
 				
 			}
 			
@@ -310,12 +318,10 @@
 			// row limit reached
 			if( this.o.max > 0 && this.count() >= this.o.max ) {
 				
-				this.$el.addClass('disabled');
 				this.$el.find('> .acf-hl .acf-button').addClass('disabled');
 				
 			} else {
 				
-				this.$el.removeClass('disabled');
 				this.$el.find('> .acf-hl .acf-button').removeClass('disabled');
 				
 			}
@@ -460,6 +466,7 @@
 		events: {
 			'click .acf-fc-remove': 		'remove',
 			'click .acf-fc-layout-handle':	'toggle',
+			'click .acf-fc-toggle':			'toggle',
 			'click .acf-fc-popup li a':		'add',
 			'click .acf-fc-add': 			'open_popup',
 			'blur .acf-fc-popup .focus':	'close_popup'
@@ -944,9 +951,13 @@
 			// remove
 			acf.remove_el( $layout, function(){
 				
+				// update order
+				self.render();
+			
+			
 				// trigger change to allow attachment save
 				self.$input.trigger('change');
-			
+				
 			
 				if( end_height > 0 ) {
 				
@@ -964,18 +975,16 @@
 			var $layout	= e.$el.closest('.layout');
 			
 			
-			if( $layout.attr('data-toggle') == 'closed' ) {
+			if( $layout.hasClass('closed') ) {
 			
-				$layout.attr('data-toggle', 'open');
-				$layout.children('.acf-input-table').show();
+				$layout.removeClass('closed');
 				
 				// refresh layout
 				acf.do_action('refresh', $layout);
 				
 			} else {
 				
-				$layout.attr('data-toggle', 'closed');
-				$layout.children('.acf-input-table').hide();
+				$layout.addClass('closed');
 				
 			}
 			
@@ -993,13 +1002,14 @@
 			
 			this.$values.children('.layout').each(function( i ){
 				
-				if( $(this).attr('data-toggle') == 'closed' ) {
+				if( $(this).hasClass('closed') ) {
 				
 					collapsed.push( i );
 					
 				}
 				
 			});
+			
 			
 			acf.update_cookie( name, collapsed.join('|') );	
 			
@@ -1019,7 +1029,8 @@
 		actions: {
 			'ready':	'initialize',
 			'append':	'initialize',
-			'submit':	'close_sidebar'
+			'submit':	'close_sidebar',
+			'show': 	'resize'
 		},
 		
 		events: {
@@ -1052,7 +1063,7 @@
 			
 		},
 		
-		get_attachment : function( id ){
+		get_attachment: function( id ){
 			
 			// defaults
 			id = id || '';
@@ -1079,13 +1090,13 @@
 			
 		},
 		
-		count : function(){
+		count: function(){
 			
 			return this.get_attachment().length;
 			
 		},
 
-		initialize : function(){
+		initialize: function(){
 			
 			// reference
 			var self = this,
@@ -1100,7 +1111,7 @@
 				forcePlaceholderSize	: true,
 				scroll					: true,
 				
-				start : function (event, ui) {
+				start: function (event, ui) {
 					
 					ui.placeholder.html( ui.item.html() );
 					ui.placeholder.removeAttr('style');
@@ -1109,7 +1120,7 @@
 					
 	   			},
 	   			
-	   			stop : function (event, ui) {
+	   			stop: function (event, ui) {
 				
 					acf.do_action('sortstop', ui.item, ui.placeholder);
 					
@@ -1119,7 +1130,7 @@
 			
 			// resizable
 			this.$el.unbind('resizable').resizable({
-				handles : 's',
+				handles: 's',
 				minHeight: 200,
 				stop: function(event, ui){
 					
@@ -1146,7 +1157,7 @@
 					
 		},
 
-		render : function() {
+		render: function() {
 			
 			// vars
 			var $select = this.$el.find('.bulk-actions'),
@@ -1211,7 +1222,7 @@
 			
 		},
 		
-		sort_success : function( json ) {
+		sort_success: function( json ) {
 		
 			// validate
 			if( !acf.is_ajax_success(json) ) {
@@ -1239,7 +1250,7 @@
 			
 		},
 		
-		clear_selection : function(){
+		clear_selection: function(){
 			
 			this.get_attachment().removeClass('active');
 			
@@ -1280,7 +1291,7 @@
 			
 		},
 		
-		open_sidebar : function(){
+		open_sidebar: function(){
 			
 			// add class
 			this.$el.addClass('sidebar-open');
@@ -1290,13 +1301,23 @@
 			this.$el.find('.bulk-actions').hide();
 			
 			
-			// animate
-			this.$el.find('.acf-gallery-main').animate({ right : 350 }, 250);
-			this.$el.find('.acf-gallery-side').animate({ width : 349 }, 250);
+			// vars
+			var width = this.$el.width() / 3;
 			
+			
+			// set minimum width
+			width = parseInt( width );
+			width = Math.max( width, 350 );
+			
+			
+			// animate
+			this.$el.find('.acf-gallery-side-inner').css({ 'width' : width-1 });
+			this.$el.find('.acf-gallery-side').animate({ 'width' : width-1 }, 250);
+			this.$el.find('.acf-gallery-main').animate({ 'right' : width }, 250);
+						
 		},
 		
-		close_sidebar : function(){
+		close_sidebar: function(){
 			
 			// remove class
 			this.$el.removeClass('sidebar-open');
@@ -1315,8 +1336,8 @@
 			
 			
 			// animate
-			this.$el.find('.acf-gallery-main').animate({ right : 0 }, 250);
-			this.$el.find('.acf-gallery-side').animate({ width : 0 }, 250, function(){
+			this.$el.find('.acf-gallery-main').animate({ right: 0 }, 250);
+			this.$el.find('.acf-gallery-side').animate({ width: 0 }, 250, function(){
 				
 				$select.show();
 				
@@ -1326,7 +1347,7 @@
 			
 		},
 		
-		fetch : function( id ){
+		fetch: function( id ){
 			
 			// vars
 			var data = acf.prepare_for_ajax({
@@ -1363,7 +1384,7 @@
 			
 		},
 		
-		render_fetch : function( html ){
+		render_fetch: function( html ){
 			
 			// bail early if no html
 			if( !html ) {
@@ -1447,7 +1468,7 @@
 			
 		},
 		
-		add : function( a ){
+		add: function( a ){
 			
 			// validate
 			if( this.o.max > 0 && this.count() >= this.o.max ) {
@@ -1494,9 +1515,7 @@
 					filename,
 				'</div>',
 				'<div class="actions acf-soh-target">',
-					'<a href="#" class="acf-icon dark remove-attachment" data-id="' + a.id + '">',
-						'<i class="acf-sprite-delete"></i>',
-					'</a>',
+					'<a href="#" class="acf-icon acf-icon-cancel dark remove-attachment" data-id="' + a.id + '"></a>',
 				'</div>',
 			'</div>'].join('');
 			
@@ -1577,7 +1596,7 @@
 			
 		},
 		
-		render_collection : function( frame ){
+		render_collection: function( frame ){
 			
 			var self = this;
 			
@@ -1687,11 +1706,11 @@
 			    	// type
 			    	if( a.type === 'image' ) {
 				    	
-				    	a.url = acf.maybe_get(atts, 'sizes', preview_size, 'url') || atts.url;
+				    	a.url = acf.maybe_get(atts, 'sizes.'+preview_size+'.url', atts.url);
 				    	
 			    	} else {
 				    	
-				    	a.url = acf.maybe_get(atts, 'thumb', 'src') || '';
+				    	a.url = acf.maybe_get(atts, 'thumb.src', '');
 				    	
 				    }
 				    
@@ -1718,7 +1737,7 @@
 			
 		},
 		
-		resize : function(){
+		resize: function(){
 			
 			// vars
 			var min = 100,
@@ -1728,7 +1747,7 @@
 			
 			
 			// get width
-			for( var i = 0; i < 10; i++ ) {
+			for( var i = 4; i < 20; i++ ) {
 			
 				var w = width/i;
 				
@@ -1740,7 +1759,11 @@
 				}
 				
 			}
-						
+			
+			
+			// max columns css is 8
+			columns = Math.min(columns, 8);
+			
 			
 			// update data
 			this.$el.attr('data-columns', columns);

@@ -399,6 +399,7 @@ section {
 					}
 				}
 				.article-content {
+					padding-bottom: 40px;
 					.embed-container {
 						position: relative;
 						padding-bottom: 56.25%;
@@ -417,7 +418,11 @@ section {
 						height: 100%;
 					}
 					.video-caption {
-						margin-top:1em
+						margin-top:1em;
+						@include media($tablet) {
+							padding-left:15px;
+							padding-right:15px
+						}
 					}
 				}
 				.la{

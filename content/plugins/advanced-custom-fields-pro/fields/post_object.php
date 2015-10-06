@@ -75,7 +75,6 @@ class acf_field_post_object extends acf_field {
    		$options = acf_parse_args($options, array(
 			'post_id'		=> 0,
 			's'				=> '',
-			'lang'			=> false,
 			'field_key'		=> '',
 			'paged'			=> 1
 		));
@@ -101,24 +100,10 @@ class acf_field_post_object extends acf_field {
 		}
 		
 		
-		// WPML
-		if( $options['lang'] ) {
-		
-			global $sitepress;
-			
-			if( !empty($sitepress) ) {
-			
-				$sitepress->switch_lang( $options['lang'] );
-				
-			}
-			
-		}
-		
-		
 		// update $args
 		if( !empty($field['post_type']) ) {
 		
-			$args['post_type'] = acf_force_type_array( $field['post_type'] );
+			$args['post_type'] = acf_get_array( $field['post_type'] );
 			
 		} else {
 			
@@ -219,10 +204,7 @@ class acf_field_post_object extends acf_field {
 			
 			
 			// optgroup or single
-			$post_types = acf_force_type_array( $args['post_type'] );
-			
-			// add as optgroup or results
-			if( count($post_types) == 1 ) {
+			if( count($args['post_type']) == 1 ) {
 				
 				$r = $r[0]['children'];
 				
@@ -253,7 +235,7 @@ class acf_field_post_object extends acf_field {
 	function ajax_query() {
 		
 		// validate
-		if( empty($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'acf_nonce') ) {
+		if( !acf_verify_ajax() ) {
 		
 			die();
 			
@@ -528,7 +510,7 @@ class acf_field_post_object extends acf_field {
 		
 		
 		// force value to array
-		$value = acf_force_type_array( $value );
+		$value = acf_get_array( $value );
 		
 		
 		// convert values to int

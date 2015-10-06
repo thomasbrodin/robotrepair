@@ -19,8 +19,8 @@ class acf_input {
 	function __construct() {
 		
 		add_action('acf/save_post', 							array($this, 'save_post'), 10, 1);
-		add_action('acf/input/admin_enqueue_scripts', 			array($this, 'admin_enqueue_scripts'), 0, 0);
-		add_action('acf/input/admin_footer', 					array($this, 'admin_footer'), 0, 0);
+		add_action('acf/input/admin_enqueue_scripts', 			array($this, 'admin_enqueue_scripts'), 10, 0);
+		add_action('acf/input/admin_footer', 					array($this, 'admin_footer'), 10, 0);
 		
 		
 		// ajax
@@ -131,8 +131,8 @@ class acf_input {
 			'validation_successful'	=> __('Validation successful', 'acf'),
 			'validation_failed'		=> __('Validation failed', 'acf'),
 			'validation_failed_1'	=> __('1 field requires attention', 'acf'),
-			'validation_failed_2'	=> __('%d fields require attention', 'acf')
-
+			'validation_failed_2'	=> __('%d fields require attention', 'acf'),
+			'restricted'			=> __('Restricted','acf')
 		));
 		
 		
@@ -240,7 +240,7 @@ class acf_input_listener {
 		global $pagenow;
 		
 		
-		// determin action hooks
+		// determine action hooks
 		if( $pagenow == 'customize.php' ) {
 			
 			$admin_head = 'customize_controls_print_scripts';
@@ -334,7 +334,7 @@ function acf_enqueue_uploader() {
 	
 	
 	// bail early if acf has already loaded
-	if( acf_get_setting('enqueue_uploader', false) ) {
+	if( acf_get_setting('enqueue_uploader') ) {
 	
 		return;
 		
