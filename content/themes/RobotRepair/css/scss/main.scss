@@ -206,9 +206,11 @@ section {
 					height:100%;
 					position:relative;
 					background-color: $colored;
-					@include span-columns(5, block-collapse);
+					float:left;
+					display: block;
+					width:calc(100% / 3);
 					&.large {
-						@include span-columns(10, block-collapse);
+						width:calc(100% * (2/3));
 						h2{
 							font-size: em(42);
 						}
@@ -586,6 +588,12 @@ $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
 .slider {
 	width: 100%;
 	height: 100%;
+	.rsOverflow {
+		width:100%!important;
+		.rsImg {
+			min-height: 100%!important
+		}
+	}
 }
 #inline {
 	display:none;
@@ -689,12 +697,12 @@ $cycle: $pad-left-8, $pad-right-4, $pad-left-4, $pad-right-16;
 		font-size: 14px;
 	}
 }
-.captioned .rsGCaption {
-	position: absolute;
-	color: #FFF;
+.captioned a .rsABlock p {
+	color: #FFF!important;
 	text-align: left;
 	padding: .3em .5em;
-	font-size: .9em;
+	font-size: 1em;
+	z-index: 100;
 }
 
 .gutted {

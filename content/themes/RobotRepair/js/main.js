@@ -8,7 +8,7 @@
 		function resize(){
 			windowHeight = $(window).height();
 			diffH = (windowHeight-headerHeight);
-			paddingFooter = 50;
+			paddingFooter = 40;
 			gridHeight.css({ height: (diffH - paddingFooter)});
 		}
 		$(window).load(function() {
@@ -18,13 +18,18 @@
 			var slider = $('.slider').royalSlider({
 				controlNavigation : 'none',
 				arrowsNav : false,
-				globalCaption:true,
 				transitionType : 'fade',
 				imageScalePadding : 0,
 				imageScaleMode:'fill',
 				autoPlay: {
 					enabled: true,
 				},
+				block: {
+					fadeEffect: true,
+					moveEffect: 'none',
+					speed: 400,
+					delay:100,
+				}
 			}).data('royalSlider');
 		});
 		$('article.friend').click(function(e) {
