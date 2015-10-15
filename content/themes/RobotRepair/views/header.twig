@@ -17,7 +17,7 @@
 					 <ul id="menu-main-nav" class="nav">
 						 {% for item in menu.get_items %}
 							 <li class="nav-main-item{{item.current ? ' active'}}{% if cpt_current == item.title %} active{% endif %}">
-								 <a href="{{item.get_path}}">{{item.title}}</a>
+								 <a{% if item.target %} target="{{item.target}}"{% endif %} href="{{item.get_path}}">{{item.title}}</a>
 								</li>
 					{% endfor %}
 					 </ul>
