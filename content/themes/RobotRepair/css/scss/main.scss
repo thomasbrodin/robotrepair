@@ -40,7 +40,8 @@ header {
 					color:$colored;
 					padding-left:.5em;
 					@include media($mobile) {
-						padding-left:0
+						padding-left:0;
+						font-size: em(14);
 					}
 				}
 		}
@@ -138,6 +139,7 @@ body.admin-bar header {
 					@include transition(all, 0.7s, ease-out);
 					@include media($mobile) {
 					max-width: 75px;
+					margin-right: 6px;
 				}
 			}
 			p {
@@ -173,7 +175,6 @@ section {
 	&#home {
 		min-height: 700px;
 		@include media($mobile) {
-		padding-top:60px;
 		min-height: 465px;
 		}
 	}
