@@ -107,11 +107,9 @@
 						<div class="block large captioned">
 							<div class="slider">
 								{% for item in post.get_field('rep')  %}
-									<a href="{{item.external_link_2}}" target="_blank">
-										<div data-rsDelay="{{post.get_field('speed_slideshow_6')}}">
-											<img class="rsImg" src="{{TimberImage(item.slides_img).get_src|resize(640, 360)}}">
-											<div class="rsABlock">{{item.slides_caption}}</div>
-										</div>
+									<a href="{{item.external_link_2}}" target="_blank" data-rsDelay="{{post.get_field('speed_slideshow_6')}}">
+										<img class="rsImg" src="{{TimberImage(item.slides_img).get_src|resize(640, 360)}}">
+										<div class="rsABlock">{{item.slides_caption}}</div>
 									</a>
 								{% endfor %}
 							</div>
