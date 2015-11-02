@@ -79,6 +79,7 @@
 				smoothPlayBar: true,
 				remainingDuration: false,
 				keyEnabled: true,
+				preload:"none",
 				keyBindings: {
 					// Disable some of the default key controls
 					loop: null,
