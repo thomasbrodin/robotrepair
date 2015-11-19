@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<section id="best-tracks" role="main" class="full-width">
+		<div class="row">
+		{% for item in post.get_field('tracks')  %}
+
+			{% if loop.index is divisible by(6) %}
+				</div>
+				<div class="row">
+			{% endif %}
+
+			<div class="track">
+								<div class="track-color" style="background-color:{{item.track_color}}">
+								</div>
+								<div id="jplayer-audio-{{ loop.index }}" class="jp-jplayer" data-url="{{item.track}}" data-title="{{item.title}}"></div>
+
+								<div id="jp-container-audio-{{ loop.index }}" class="jp-flat-audio" role="application" aria-label="media player">
+										<div class="jp-play-control jp-control">
+												<button class="jp-play jp-button" role="button" aria-label="play" tabindex="0"></button>
+										<div class="jp-bar">
+												<div class="jp-seek-bar jp-seek-bar-display"></div>
+												<div class="jp-seek-bar">
+														<div class="jp-play-bar"></div>
+														<div class="jp-details">
+																<span class="jp-title" aria-label="title"></span>
+														</div>
+												</div>
+
+										</div>
+										<div class="jp-play-control jp-control-right">
+												<button class="jp-download file-{{ loop.index }}" role="button" aria-label="download" tabindex="0"></button>
+										</div>
+										<div class="jp-no-solution">
+												Media Player Error<br />
+												Update your browser or Flash plugin
+										</div>
+								</div>
+						</div>
+
+		{% endfor %}
+		</div>
+
+		<div class="bottom-row">
+						<div class="inner">
+					<a class="download-all" target="_blank" href="{{post.get_field('download_all')}}">DOWNLOAD ALL</a>
+						</div>
+		</div>
+
+		</section>
+
+{% endblock %}

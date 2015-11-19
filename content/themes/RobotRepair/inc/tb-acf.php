@@ -975,7 +975,7 @@ acf_add_local_field_group(array (
 			'min' => '',
 			'max' => '',
 			'layout' => 'table',
-			'button_label' => 'Add Row',
+			'button_label' => 'Add track',
 			'sub_fields' => array (
 				array (
 					'key' => 'field_551aadf5c3583',
