@@ -77,7 +77,7 @@
 					padMin: false
 				},
 				playlistOptions: {
-					autoPlay: true,
+					autoPlay: false,
 					loopOnPrevious: true,
 					shuffleOnLoop: true,
 					enableRemoveControls: false,
@@ -101,6 +101,9 @@
 				},
 				wmode: "window",
 				loadstart: function() {
+					$('.jp-bar').remove();
+					$('.jp-download').remove();
+					$('.track-color').remove();
 					var trackContainer = $('.jp-playlist li');
 					trackContainer.prepend($('<div class="jp-bar"><div class="jp-seek-bar jp-seek-bar-display"></div>	<div class="jp-seek-bar"><div class="jp-play-bar"></div></div></div>'));
 					trackContainer.prepend($('<button class="jp-download jp-button" role="button" aria-label="download" tabindex="0"></button>'));
@@ -109,25 +112,13 @@
 						trackContainer.eq(i).prepend('<div class="track-color" style="background-color:'+color+'"></div>');
 					});
 					$("#top-tracks").jPlayer("option", "cssSelector", {
-						seekBar: '.jp-playlist li:first-child .jp-seek-bar',
-						playBar: '.jp-playlist li:first-child .jp-play-bar',
+						seekBar: 'li.jp-playlist-current .jp-seek-bar',
+						playBar: 'li.jp-playlist-current .jp-play-bar',
 					});
 					$('button.jp-download').click(function() {
 						var $a_href = ($(this).closest('li').find('a.jp-playlist-item-free').attr('href'));
 						event.preventDefault();  //stop the browser from following
 						window.location.href = $a_href;
-					});
-				},
-				ended: function() {
-					$("#top-tracks").jPlayer("option", "cssSelector", {
-						seekBar: 'li.jp-playlist-current .jp-seek-bar',
-						playBar: 'li.jp-playlist-current .jp-play-bar',
-					});
-				},
-				play: function(){
-					$("#top-tracks").jPlayer("option", "cssSelector", {
-						seekBar: 'li.jp-playlist-current .jp-seek-bar',
-						playBar: 'li.jp-playlist-current .jp-play-bar',
 					});
 				}
 			});

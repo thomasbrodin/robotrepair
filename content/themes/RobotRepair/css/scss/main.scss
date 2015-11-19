@@ -542,6 +542,7 @@ section {
 						a.jp-playlist-item {
 							z-index:1;
 							display: inline-block;
+							font-size: 14px;
 						}
 					}
 					.track-color {
@@ -585,6 +586,7 @@ section {
 					color:#232323;
 					.jp-title {
 						 display: inline-block;
+						 font-size: 14px;
 					}
 					.jp-current-time {
 						display: inline-block;
@@ -606,7 +608,7 @@ section {
 						display: none;
 				 }
 				 a {
-					 font-size: em(24);
+					 font-size: em(22);
 					 font-weight: 300;
 					 display: block;
 					 line-height: 30px;
