@@ -180,6 +180,7 @@ section {
 	}
 	&#best-tracks {
 		padding-bottom:60px;
+		display: none
 	}
 	&#info {
 		padding-bottom:100px;
@@ -529,7 +530,7 @@ section {
 						color:#fff;
 						line-height: 30px;
 						font-size: 14px;
-						display: inline-block;
+						display: block;
 						z-index: 0;
 						position: relative;
 						padding-left: 14px;
@@ -539,8 +540,9 @@ section {
 					}
 					&.jp-playlist-current {
 						a.jp-playlist-item {
-						display: none;
-					}
+							z-index:1;
+							display: inline-block;
+						}
 					}
 					.track-color {
 						display: block;
@@ -565,7 +567,7 @@ section {
 		 z-index:11;
 		 .inner {
 			 @include outer-container;
-			 padding:0 22px 30px;
+			 padding:13px 22px 20px;
 			 .gui {
 				 @include span-columns(10);
 				 @include media($tablet) {
@@ -591,6 +593,9 @@ section {
 					.jp-duration {
 						display: inline-block;
 						padding:0 24px 0 0;
+						@include media($tablet) {
+							display: none
+						}
 					}
 				 }
 			 }

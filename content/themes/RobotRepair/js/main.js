@@ -71,7 +71,6 @@
 				gui: '.jp-flat-audio',
 				noSolution: '.jp-no-solution',
 				currentTime: ".jp-current-time",
-				duration: ".jp-duration",
 			 },
 			}, rrPlaylist, {
 				timeFormat: {
@@ -101,7 +100,7 @@
 					volumeDown: null
 				},
 				wmode: "window",
-				ready: function() {
+				loadstart: function() {
 					var trackContainer = $('.jp-playlist li');
 					trackContainer.prepend($('<div class="jp-bar"><div class="jp-seek-bar jp-seek-bar-display"></div>	<div class="jp-seek-bar"><div class="jp-play-bar"></div></div></div>'));
 					trackContainer.prepend($('<button class="jp-download jp-button" role="button" aria-label="download" tabindex="0"></button>'));
@@ -131,6 +130,9 @@
 						playBar: 'li.jp-playlist-current .jp-play-bar',
 					});
 				}
+			});
+			$("#shuffle").click(function() {
+				myPlaylist.shuffle();
 			});
 		}
 		if ($('#collaborator').length) {

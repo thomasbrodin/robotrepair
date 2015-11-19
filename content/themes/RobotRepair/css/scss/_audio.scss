@@ -179,6 +179,10 @@
 .jp-pause:before {
 	content: '\f04c';
 }
+.jp-shuffle:before {
+	content: '\f074';
+	font-size: 14px!important;
+}
 .jp-download.jp-button {
 	float:right;
 	background-color: #3c6072;
@@ -221,7 +225,7 @@
 	left: 0;
 	width: 0;
 	height: 100%;
-	z-index:1;
+	z-index:0;
 	background-color: #ff8c20;
 }
 

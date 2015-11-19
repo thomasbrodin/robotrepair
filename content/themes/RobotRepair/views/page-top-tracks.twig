@@ -1,14 +1,6 @@
-{% block html_head_container %}
+{% extends "base.twig" %}
 
-{% include 'html-header.twig' %}
-	{% block head %}
-	{% endblock %}
-	</head>
-{% endblock %}
-
-	<body class="{{body_class}}" data-template="base.twig">
-
-	{% include 'header.twig' %}
+{% block content %}
 	<section id="best-tracks" role="main" class="full-width">
 
 		<div class="jp-container-playlist" role="application" aria-label="media player">
@@ -28,9 +20,9 @@
 								<button class="jp-play jp-button" role="button" aria-label="play" tabindex="0"></button>
 								<button class="jp-pause jp-button" role="button" aria-label="pause" tabindex="0"></button>
 								<button class="jp-next jp-button" role="button" aria-label="next" tabindex="0"></button>
+								<button id="shuffle" class="jp-shuffle jp-button" role="button" tabindex="0"></button>
 						</div>
 						<div class="jp-details">
-							<div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
 							<div class="jp-title" aria-label="title">&nbsp;</div>
 							<div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
 						</div>
@@ -53,17 +45,4 @@
 		var rrPlaylist = {{post.get_field('tracks')|json_encode()|replace({'track':'mp3'})}};
 	</script>
 
-	{{ function('wp_footer') }}
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-		ga('create', 'UA-9862372-1', 'auto');
-		ga('send', 'pageview');
-
-	</script>
-
-	</body>
-	</html>
+{% endblock %}
