@@ -109,7 +109,15 @@
               var myPlayer = this;
                 myPlayer.play();
                 myPlayer.on('ended', function() {
+                  if(this.isFullscreen() === true) {
+                    this.exitFullscreen();
+                    slider.updateSliderSize(true);
+                    setTimeout(function(){
+                      slider.next();
+                    }, 500);
+                  } else {
                     slider.next();
+                  }
                 });
             });
             slider.ev.on('rsBeforeMove', function(event) {
@@ -133,7 +141,15 @@
               var myPlayer = this;
                   myPlayer.play();
                   myPlayer.on('ended', function() {
-                    slider.goTo(current+1);
+                    if(this.isFullscreen() === true) {
+                      this.exitFullscreen();
+                      slider.updateSliderSize(true);
+                      setTimeout(function(){
+                        slider.goTo(current+1);
+                      }, 500);
+                    } else {
+                      slider.goTo(current+1);
+                    }
                   });
               });
             });
@@ -189,7 +205,15 @@
                 var myPlayer = this;
                 myPlayer.play();
                 myPlayer.on('ended', function() {
+                  if(this.isFullscreen() === true) {
+                    this.exitFullscreen();
+                    slider.updateSliderSize(true);
+                    setTimeout(function(){
+                      slider.goTo(1);
+                    }, 500);
+                  } else {
                     slider.goTo(1);
+                  }
                 });
               });
             }
@@ -214,7 +238,15 @@
               var myPlayer = this;
                   myPlayer.play();
                   myPlayer.on('ended', function() {
-                    slider.goTo(current+1);
+                    if(this.isFullscreen() === true) {
+                      this.exitFullscreen();
+                      slider.updateSliderSize(true);
+                      setTimeout(function(){
+                        slider.goTo(current+1);
+                      }, 500);
+                    } else {
+                      slider.goTo(current+1);
+                    }
                   });
               });
             });
