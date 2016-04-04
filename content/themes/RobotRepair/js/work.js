@@ -108,16 +108,18 @@
             videojs("video-0").ready(function(){
               var myPlayer = this;
                 myPlayer.play();
+                myPlayer.on('fullscreenchange', function() {
+                  setTimeout(function() {
+                    var fbWidth = $('.fancybox-inner').width();
+                    $('.rsVisibleNearbyWrap').css('width',  fbWidth);
+                    slider.updateSliderSize(true);
+                  }, 1);
+                });
                 myPlayer.on('ended', function() {
                   if(this.isFullscreen() === true) {
                     this.exitFullscreen();
-                    slider.updateSliderSize(true);
-                    setTimeout(function(){
-                      slider.next();
-                    }, 500);
-                  } else {
-                    slider.next();
                   }
+                  slider.next();
                 });
             });
             slider.ev.on('rsBeforeMove', function(event) {
@@ -140,16 +142,18 @@
               videojs("video-"+current).ready(function(){
               var myPlayer = this;
                   myPlayer.play();
+                  myPlayer.on('fullscreenchange', function() {
+                    setTimeout(function() {
+                      var fbWidth = $('.fancybox-inner').width();
+                      $('.rsVisibleNearbyWrap').css('width',  fbWidth);
+                      slider.updateSliderSize(true);
+                    }, 1);
+                  });
                   myPlayer.on('ended', function() {
                     if(this.isFullscreen() === true) {
                       this.exitFullscreen();
-                      slider.updateSliderSize(true);
-                      setTimeout(function(){
-                        slider.goTo(current+1);
-                      }, 500);
-                    } else {
-                      slider.goTo(current+1);
                     }
+                    slider.goTo(current+1);
                   });
               });
             });
@@ -204,16 +208,19 @@
               videojs("video-0").ready(function(){
                 var myPlayer = this;
                 myPlayer.play();
+                myPlayer.on('fullscreenchange', function() {
+                  setTimeout(function() {
+                    var fbWidth = $('.fancybox-inner').width();
+                    console.log(fbWidth);
+                    $('.rsVisibleNearbyWrap').css('width',  fbWidth);
+                    slider.updateSliderSize(true);
+                  }, 100);
+                });
                 myPlayer.on('ended', function() {
                   if(this.isFullscreen() === true) {
                     this.exitFullscreen();
-                    slider.updateSliderSize(true);
-                    setTimeout(function(){
-                      slider.goTo(1);
-                    }, 500);
-                  } else {
-                    slider.goTo(1);
                   }
+                  slider.goTo(1);
                 });
               });
             }
@@ -237,16 +244,18 @@
               videojs("video-"+current).ready(function(){
               var myPlayer = this;
                   myPlayer.play();
+                  myPlayer.on('fullscreenchange', function() {
+                    setTimeout(function() {
+                      var fbWidth = $('.fancybox-inner').width();
+                      $('.rsVisibleNearbyWrap').css('width',  fbWidth);
+                      slider.updateSliderSize(true);
+                    }, 100);
+                  });
                   myPlayer.on('ended', function() {
                     if(this.isFullscreen() === true) {
                       this.exitFullscreen();
-                      slider.updateSliderSize(true);
-                      setTimeout(function(){
-                        slider.goTo(current+1);
-                      }, 500);
-                    } else {
-                      slider.goTo(current+1);
                     }
+                    slider.goTo(current+1);
                   });
               });
             });
